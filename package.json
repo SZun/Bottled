@@ -13,6 +13,10 @@
   "prettier": {
     "singleQuote": true
   },
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.2.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
