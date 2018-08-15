@@ -1,10 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import { Route } from 'react-router-dom';
+import Homepage from './pages/homepage.js';
+import SignIn from './pages/sign-in';
 
-class App extends Component {
-  render() {
-    return <div className="App" />;
-  }
-}
+const App = () => {
+  return (
+    <div>
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/sign-in" component={SignIn} />
+    </div>
+  );
+};
 
 export default App;
