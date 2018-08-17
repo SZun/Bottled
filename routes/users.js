@@ -110,12 +110,17 @@ router.post('/login', async (req, res) => {
     const { id, name } = user;
     const payload = { id, name };
     // Sign Token
-    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-      res.json({
-        sucess: true,
-        token: 'Bearer ' + token
-      });
-    });
+    jwt.sign(
+      payload,
+      keys.secretOrKey,
+      { expiresIn: 3600 * 24 },
+      (err, token) => {
+        res.json({
+          sucess: true,
+          token: 'Bearer ' + token
+        });
+      }
+    );
   } else {
     errors.password = 'Password not found';
     return res.status(400).json(errors);
