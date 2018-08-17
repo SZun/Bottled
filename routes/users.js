@@ -8,19 +8,40 @@ import passport from 'passport';
 
 const router = express.Router();
 
+// Add in validation Logic
 import { validateLogin, validateSignUp } from '../validation/users';
 
 router.post('/signup', async (req, res) => {
+  // Instantiate Errors Object
   const errors = {};
-
+  // Validate user input and set errors
   const { error } = validateSignUp(req.body);
-  if (error && error.details[0].message.split(' ')[0] === `"email"`) {
-    errors.email = 'Invalid Email Address';
+  if (error) {
+    error.details.map(err => {
+      const errorVal = err.message.replace(/"/g, '');
+      const key = errorVal.split(' ')[0];
+      switch (key) {
+        case 'name':
+          errors[key] = 'name must be between 5-50 characters';
+          break;
+        case 'email':
+          errors[key] = 'email is invalid';
+          break;
+        case 'password':
+          errors[key] =
+            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
+          break;
+        case 'confirmPassword':
+          errors[key] = 'passwords must match';
+          break;
+        default:
+          return;
+      }
+    });
     return res.status(400).json(errors);
   }
-  if (error) return res.status(400).send(error.details[0].message);
 
-  const { name, email, password } = req.body;
+  const { name, email, password, confirmPassword } = req.body;
 
   let user = await User.findOne({ email });
   if (user) {
@@ -30,7 +51,8 @@ router.post('/signup', async (req, res) => {
     let user = new User({
       name,
       email,
-      password
+      password,
+      confirmPassword
     });
 
     bcrypt.genSalt(10, (err, salt) => {
@@ -50,14 +72,28 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   const errors = {};
 
+  // Validate user input and set errors
   const { error } = validateLogin(req.body);
 
-  if (error && error.details[0].message.split(' ')[0] === `"email"`) {
-    errors.email = 'Invalid Email Address';
+  if (error) {
+    const errors = {};
+    error.details.map(err => {
+      const errorVal = err.message.replace(/"/g, '');
+      const key = errorVal.split(' ')[0];
+      switch (key) {
+        case 'email':
+          errors[key] = 'email is invalid';
+          break;
+        case 'password':
+          errors[key] =
+            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
+          break;
+        default:
+          return;
+      }
+    });
     return res.status(400).json(errors);
   }
-
-  if (error) return res.status(400).send(error.details[0].message);
 
   const { email, password } = req.body;
 
@@ -81,7 +117,7 @@ router.post('/login', async (req, res) => {
       });
     });
   } else {
-    errors.password = 'Password incorrect';
+    errors.password = 'Password not found';
     return res.status(400).json(errors);
   }
 });

@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import PasswordComplexity from 'joi-password-complexity';
 
 const validateSignUp = user => {
   const schema = {
@@ -12,12 +13,18 @@ const validateSignUp = user => {
       )
       .required(),
     password: Joi.string()
-      .min(5)
-      .max(255)
+      .min(8)
+      .max(26)
+      .required(),
+    confirmPassword: Joi.any()
+      .valid(Joi.ref('password'))
       .required()
   };
 
-  return Joi.validate(user, schema);
+  return (
+    Joi.validate(schema.password, new PasswordComplexity()) &&
+    Joi.validate(user, schema, { abortEarly: false })
+  );
 };
 
 const validateLogin = user => {
@@ -28,12 +35,12 @@ const validateLogin = user => {
       )
       .required(),
     password: Joi.string()
-      .min(5)
-      .max(255)
+      .min(8)
+      .max(26)
       .required()
   };
 
-  return Joi.validate(user, schema);
+  return Joi.validate(user, schema, { abortEarly: false });
 };
 
 export { validateSignUp };
