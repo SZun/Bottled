@@ -1,10 +1,13 @@
 import express from 'express';
-const router = express.Router();
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs';
 import User from '../models/User';
 import mongoose from 'mongoose';
 import keys from '../config/keys';
 import jwt from 'jsonwebtoken';
+import passport from 'passport';
+
+const router = express.Router();
+
 import { validateLogin, validateSignUp } from '../validation/users';
 
 router.post('/signup', async (req, res) => {
@@ -82,5 +85,15 @@ router.post('/login', async (req, res) => {
     return res.status(400).json(errors);
   }
 });
+
+router.get(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    console.log(req.user);
+    let user = await User.findById(req.user._id);
+    res.status(404).send(user);
+  }
+);
 
 export default router;
