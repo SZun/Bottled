@@ -1,6 +1,8 @@
-import express from "express";
+import express from 'express';
 const app = express();
+import mongoose from 'mongoose';
+import mongooseConnection from './startup/connection';
 
-app.get("/", (req, res) => res.send("working"));
+mongooseConnection(mongoose);
 
-app.listen(5000, console.log("Listening on port 5000"));
+app.listen(5000, console.log('Listening on port 5000'));
