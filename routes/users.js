@@ -131,9 +131,12 @@ router.get(
   '/me',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    console.log(req.user);
-    let user = await User.findById(req.user._id);
-    res.status(404).send(user);
+    try {
+      const user = await User.findById(req.user._id).select('name email');
+      res.send(user);
+    } catch (err) {
+      res.status(404).send('Bad Request');
+    }
   }
 );
 
