@@ -1,9 +1,7 @@
-var mongoose = require('mongoose');
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
-
-var OrderSchema = new Schema({
+const OrderSchema = new Schema({
   beerName: {
     type: String,
     required: true
@@ -14,7 +12,8 @@ var OrderSchema = new Schema({
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
+    maxlength: 10
   },
   status: {
     type: String,
@@ -22,8 +21,6 @@ var OrderSchema = new Schema({
   }
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var Order = mongoose.model('Order', OrderSchema);
+const Order = mongoose.model('order', userSchema);
 
-// Export the Order model
-module.exports = Order;
+export default Order;
