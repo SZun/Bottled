@@ -1,9 +1,7 @@
-var mongoose = require('mongoose');
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
-
-var BeerSchema = new Schema({
+const BeerSchema = new Schema({
   beerName: {
     type: String,
     required: true
@@ -31,8 +29,6 @@ var BeerSchema = new Schema({
 
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var Beer = mongoose.model('Beer', BeerSchema);
+const Beer = mongoose.model('beer', userSchema);
 
-// Export the Beer model
-module.exports = Beer;
+export default Beer;
