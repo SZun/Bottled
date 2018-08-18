@@ -2,7 +2,7 @@ import setAuthToken from '../../axios/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import axios from '../../axios/userRoutes';
 
-import { GET_ERRORS, SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, CLEAR_ERRORS } from './types';
 
 // SignUp User
 export const registerUser = (userData, history) => async dispatch => {
@@ -42,12 +42,10 @@ export const loginUser = (userData, history) => async dispatch => {
 };
 
 // Set logged in user
-export const setCurrentUser = decoded => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: decoded
-  };
-};
+export const setCurrentUser = decoded => ({
+  type: SET_CURRENT_USER,
+  payload: decoded
+});
 
 // Log user out
 export const logoutUser = () => dispatch => {
@@ -58,3 +56,5 @@ export const logoutUser = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
+export const clearErrors = () => ({ type: CLEAR_ERRORS });

@@ -5,6 +5,7 @@ import store from '../store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../axios/setAuthToken';
 import PropTypes from 'prop-types';
+import Login from './Login';
 
 // Check for toekn
 if (localStorage.jwtToken) {
@@ -30,6 +31,7 @@ if (localStorage.jwtToken) {
 const Layout = ({ children }) => (
   <div>
     {/* Add Header Here */}
+    <Login />
     {children}
   </div>
 );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser } from '../store/actions/authActions';
+import { loginUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
 
 class Login extends Component {
@@ -25,6 +25,7 @@ class Login extends Component {
 
   onSubmitHandler = e => {
     e.preventDefault();
+    this.props.clearErrors();
     const { password, email } = this.state;
     const userData = {
       email,
@@ -96,6 +97,7 @@ class Login extends Component {
 Login.propTypes = {
   auth: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
@@ -106,5 +108,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, clearErrors }
 )(withRouter(Login));

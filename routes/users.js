@@ -4,7 +4,7 @@ import User from '../models/User';
 import mongoose from 'mongoose';
 import keys from '../config/keys';
 import jwt from 'jsonwebtoken';
-import auth from '../middleware/auth';
+import passport from 'passport';
 
 const router = express.Router();
 
@@ -136,13 +136,17 @@ router.post('/login', async (req, res) => {
 // @route GET api/users/login
 // @desc Testing auth and giving user access to their account
 // @access Private
-router.get('/me', auth, async (req, res, next) => {
-  try {
-    const user = await User.findById(req.user._id).select('name email -id');
-    res.send(user);
-  } catch (err) {
-    res.status(401).send('Bad Request');
+router.get(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user._id).select('name email');
+      res.send(user);
+    } catch (err) {
+      res.status(401).send('Bad Request');
+    }
   }
-});
+);
 
 export default router;
