@@ -1,25 +1,40 @@
-var mongoose = require('mongoose');
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
-
-var UserSchema = new Schema({
-  googleId: {
+const userSchema = new Schema({
+  name: {
     type: String,
-    required: true
+    required: true,
+    trim: true,
+    minlength: 5,
+    maxlength: 50
   },
-  preferences: {
+  email: {
     type: String,
-    required: false
+    required: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 5,
+    maxlength: 1024
   },
   address: {
     type: String,
-    required: true
+    required: true,
+    maxlength: 1024
+  },
+  preferences: {
+    type: String,
+    required: false,
+    maxlength: 1024
   }
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var User = mongoose.model('User', UserSchema);
+const User = mongoose.model('users', userSchema);
 
-// Export the User model
-module.exports = User;
+export default User;
+
+

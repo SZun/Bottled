@@ -1,7 +1,5 @@
-var mongoose = require('mongoose');
-
-// Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 var BrewerySchema = new Schema({
   companyName: {
@@ -18,8 +16,7 @@ var BrewerySchema = new Schema({
   }
 });
 
-// This creates our model from the above schema, using mongoose's model method
-var Brewery = mongoose.model('Brewery', BrewerySchema);
 
-// Export the Brewery model
-module.exports = Brewery;
+const Brewery = mongoose.model('brewery', userSchema);
+
+export default Brewery;
