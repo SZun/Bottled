@@ -43,6 +43,14 @@ class Login extends Component {
           value={email}
           onChange={this.onChangeHandler}
           type="email"
+          style={
+            errors.email
+              ? {
+                  backgroundColor: '#DB9797',
+                  border: '1px solid #FF0000'
+                }
+              : null
+          }
         />
         {errors.email ? (
           <p
@@ -57,6 +65,14 @@ class Login extends Component {
           formNoValidate
           name="password"
           value={password}
+          style={
+            errors.password
+              ? {
+                  backgroundColor: '#DB9797',
+                  border: '1px solid #FF0000'
+                }
+              : null
+          }
           onChange={this.onChangeHandler}
           type="password"
         />

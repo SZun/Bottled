@@ -86,7 +86,7 @@ router.post('/login', async (req, res) => {
           break;
         case 'password':
           errors[key] =
-            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
+            'Password must have 8-26 characters, lowercase, uppercase, numeric and symbol';
           break;
         default:
           return;
