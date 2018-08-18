@@ -82,7 +82,7 @@ router.post('/login', async (req, res) => {
       const key = errorVal.split(' ')[0];
       switch (key) {
         case 'email':
-          errors[key] = 'email is invalid';
+          errors[key] = 'Email is invalid';
           break;
         case 'password':
           errors[key] =

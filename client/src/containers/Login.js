@@ -6,8 +6,15 @@ import PropTypes from 'prop-types';
 class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    errors: {}
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   onChangeHandler = e => {
     this.setState({
@@ -26,7 +33,7 @@ class Login extends Component {
   };
 
   render() {
-    const { password, email } = this.state;
+    const { password, email, errors } = this.state;
     return (
       <div>
         <input
@@ -36,13 +43,31 @@ class Login extends Component {
           onChange={this.onChangeHandler}
           type="email"
         />
+        {errors.email ? (
+          <p
+            style={{
+              color: '#FF0000'
+            }}
+          >
+            {errors.email}
+          </p>
+        ) : null}
         <input
           formNoValidate
           name="password"
           value={password}
           onChange={this.onChangeHandler}
-          type="text"
+          type="password"
         />
+        {errors.password ? (
+          <p
+            style={{
+              color: '#FF0000'
+            }}
+          >
+            {errors.password}
+          </p>
+        ) : null}
         <button type="submit" onClick={this.onSubmitHandler}>
           Submit
         </button>
@@ -53,11 +78,13 @@ class Login extends Component {
 
 Login.propTypes = {
   auth: PropTypes.object.isRequired,
-  loginUser: PropTypes.func.isRequired
+  loginUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(
