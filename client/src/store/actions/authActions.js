@@ -18,7 +18,7 @@ export const registerUser = (userData, history) => async dispatch => {
 };
 
 // Login Get User Token
-export const loginUser = userData => async dispatch => {
+export const loginUser = (userData, history) => async dispatch => {
   try {
     const user = await axios.post('/login', userData);
     // Save to local storage
@@ -31,6 +31,8 @@ export const loginUser = userData => async dispatch => {
     const decoded = jwt_decode(token);
     // Set current user
     dispatch(setCurrentUser(decoded));
+    // Redirect user to '/banan' route
+    history.push('/banan');
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

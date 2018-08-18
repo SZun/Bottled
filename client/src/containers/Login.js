@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { loginUser } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
 
@@ -29,7 +30,7 @@ class Login extends Component {
       email,
       password
     };
-    this.props.loginUser(userData);
+    this.props.loginUser(userData, this.props.history);
   };
 
   render() {
@@ -90,4 +91,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(Login);
+)(withRouter(Login));
