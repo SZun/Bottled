@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  name: {
+   name: {
     type: String,
     required: true,
     trim: true,
@@ -21,20 +21,11 @@ const userSchema = new Schema({
     minlength: 5,
     maxlength: 1024
   },
-  address: {
-    type: String,
-    required: true,
-    maxlength: 1024
-  },
   preferences: {
-    type: String,
-    required: false,
-    maxlength: 1024
+    type: [String]
   }
 });
 
 const User = mongoose.model('users', userSchema);
 
 export default User;
-
-
