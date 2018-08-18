@@ -4,13 +4,16 @@ import User from '../models/User';
 import mongoose from 'mongoose';
 import keys from '../config/keys';
 import jwt from 'jsonwebtoken';
-import passport from 'passport';
+import auth from '../middleware/auth';
 
 const router = express.Router();
 
 // Add in validation Logic
 import { validateLogin, validateSignUp } from '../validation/users';
 
+// @route POST api/users/signup
+// @desc Register user for an account
+// @access Public
 router.post('/signup', async (req, res) => {
   // Instantiate Errors Object
   const errors = {};
@@ -69,6 +72,9 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// @route POST api/users/login
+// @desc Log user in to their account
+// @access Public
 router.post('/login', async (req, res) => {
   const errors = {};
 
@@ -127,17 +133,16 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get(
-  '/me',
-  passport.authenticate('jwt', { session: false }),
-  async (req, res) => {
-    try {
-      const user = await User.findById(req.user._id).select('name email -id');
-      res.send(user);
-    } catch (err) {
-      res.status(404).send('Bad Request');
-    }
+// @route GET api/users/login
+// @desc Testing auth and giving user access to their account
+// @access Private
+router.get('/me', auth, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id).select('name email -id');
+    res.send(user);
+  } catch (err) {
+    res.status(401).send('Bad Request');
   }
-);
+});
 
 export default router;
