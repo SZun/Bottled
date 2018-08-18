@@ -107,8 +107,8 @@ router.post('/login', async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (isMatch) {
     // User Matched
-    const { id, name } = user;
-    const payload = { id, name };
+    const { id, name, email } = user;
+    const payload = { id, name, email };
     // Sign Token
     jwt.sign(
       payload,
@@ -132,7 +132,7 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const user = await User.findById(req.user._id).select('name email');
+      const user = await User.findById(req.user._id).select('name email -id');
       res.send(user);
     } catch (err) {
       res.status(404).send('Bad Request');
