@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Homepage from './components/pages/homepage.js';
 import NavbarReact from './components/navbar';
-import SignIn from './components/pages/sign-in';
 import asyncComponent from './utils/asyncComponent';
 import Layout from './containers/Layout';
 // import PrivateRoute from './components/PrivateRoute'
