@@ -20,6 +20,9 @@ export const registerUser = (userData, history) => async dispatch => {
 // Login Get User Token
 export const loginUser = (userData, history) => async dispatch => {
   try {
+    // Log Current User Out
+    dispatch(logoutUser());
+    // Hit login route on backend
     const user = await axios.post('/login', userData);
     // Save to local storage
     const { token } = user.data;
