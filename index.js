@@ -1,6 +1,21 @@
-import express from "express";
+import express from 'express';
+import mongoose from 'mongoose';
+import passport from 'passport';
+
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => res.send("working"));
+import mongooseConnection from './startup/connection';
+import bodyParserMiddleware from './startup/bodyParser';
+import passportMiddleware from './services/passport';
 
-app.listen(5000, console.log("Listening on port 5000"));
+import userRoutes from './routes/users';
+
+mongooseConnection(mongoose);
+bodyParserMiddleware(app);
+app.use(passport.initialize());
+passportMiddleware(passport);
+
+app.use('/api/users', userRoutes);
+
+app.listen(PORT, console.log(`Listening on port ${PORT}`));
