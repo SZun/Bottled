@@ -1,9 +1,7 @@
-
 import React from 'react';
-import './App.css';
 import { Route } from 'react-router-dom';
-import Homepage from './pages/homepage.js';
-import SignIn from './pages/sign-in';
+import Homepage from './containers/Homepage';
+import SignIn from './containers/SignIn';
 
 const App = () => {
   return (
