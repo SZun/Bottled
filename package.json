@@ -1,10 +1,9 @@
 {
-  "name": "server",
+  "name": "Bottled",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Ricky's branch is now live",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon starter.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -18,9 +17,17 @@
     "node": "10.6.0",
     "npm": "6.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SZun/Bottled.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SZun/Bottled/issues"
+  },
+  "homepage": "https://github.com/SZun/Bottled#readme",
   "dependencies": {
     "babel-plugin-classnames": "^0.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -31,7 +38,6 @@
     "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "concurrently": "^3.6.1",
     "express": "^4.16.3",
     "joi": "^13.6.0",
     "joi-password-complexity": "^2.0.1",
@@ -41,6 +47,7 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "concurrently": "^3.6.1"
   }
 }

@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-   name: {
+  name: {
     type: String,
     required: true,
     trim: true,
@@ -22,7 +22,7 @@ const userSchema = new Schema({
     maxlength: 1024
   },
   preferences: {
-    type: [String]
+    type: String
   }
 });
 

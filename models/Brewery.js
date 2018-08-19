@@ -1,22 +1,24 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-var BrewerySchema = new Schema({
+var brewerySchema = new Schema({
   companyName: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   city: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   state: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   }
 });
 
-
-const Brewery = mongoose.model('brewery', userSchema);
+const Brewery = mongoose.model('brewery', brewerySchema);
 
 export default Brewery;

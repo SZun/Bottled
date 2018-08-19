@@ -1,51 +1,23 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const mongoose = require("mongoose");
+import express from 'express';
+import mongoose from 'mongoose';
+import passport from 'passport';
 
-// Our scraping tools
-// Axios is a promised-based http library, similar to jQuery's Ajax method
-// It works on the client and on the server
-const axios = require("axios");
-const cheerio = require("cheerio");
-
-// Require all models
-const db = require("./models");
-
-const PORT = 3000;
-
-// Initialize Express
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Configure middleware
+import mongooseConnection from './startup/connection';
+import bodyParserMiddleware from './startup/bodyParser';
+import passportMiddleware from './services/passport';
 
-// Use morgan logger for logging requests
-app.use(logger("dev"));
-// Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+import userRoutes from './routes/users';
+import beerRoutes from './routes/beers';
 
-// Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/Bottled");
+mongooseConnection(mongoose);
+bodyParserMiddleware(app);
+app.use(passport.initialize());
+passportMiddleware(passport);
 
-// Route for getting all Articles from the db
-app.get("/beers", function(req, res) {
-    // Grab every document in the Articles collection
-    db.Beer.find({})
-      .then(function(dbBeer) {
-        // If we were able to successfully find Beers, send them back to the client
-        res.json(dbArticle);
-      })
-      .catch(function(err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
-  });
+app.use('/api/users', userRoutes);
+app.use('/api/beers', beerRoutes);
 
-  // Start the server
-app.listen(PORT, function() {
-    console.log("App running on port " + PORT + "!");
-  });
-  
-  
+app.listen(PORT, console.log(`Listening on port ${PORT}`));

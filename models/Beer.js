@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const BeerSchema = new Schema({
+const beerSchema = new Schema({
   beerName: {
     type: String,
     required: true
@@ -19,16 +19,15 @@ const BeerSchema = new Schema({
     required: false
   },
   ounces: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },
   breweryId: {
-      type: Schema.Types.ObjectId,
-      ref: "Brewery"
+    type: Schema.Types.ObjectId,
+    ref: 'Brewery'
   }
-
 });
 
-const Beer = mongoose.model('beer', userSchema);
+const Beer = mongoose.model('beer', beerSchema);
 
 export default Beer;
