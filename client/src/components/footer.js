@@ -14,7 +14,7 @@ const FooterComponent = () => (
       color: '#FFFFFF'
     }}
   >
-    <h5>© 2018 Bottled</h5>
+    <h5>Copyright &copy; {new Date().getFullYear()} Bottled</h5>
   </div>
 );
 export default FooterComponent;
