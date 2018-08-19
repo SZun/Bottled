@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, NavItem } from 'react-materialize';
-import Button from '../components/Button';
+import Button from './Button';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
