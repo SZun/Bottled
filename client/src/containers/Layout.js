@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setCurrentUser, logoutUser } from '../store/actions/authActions';
+import { withRouter } from 'react-router-dom';
 import store from '../store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../axios/setAuthToken';
@@ -18,12 +19,10 @@ if (localStorage.jwtToken) {
   // Check for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
-    // Logout user
-    store.dispatch(logoutUser());
     // Clear current token
     localStorage.removeItem('jwtToken');
-    // Redirect to login
-    window.location.href = '/login';
+    // Logout user
+    store.dispatch(logoutUser(this.props.history));
   }
 }
 
@@ -43,4 +42,4 @@ Layout.propTypes = {
 export default connect(
   null,
   { setAuthToken, setCurrentUser, logoutUser }
-)(Layout);
+)(withRouter(Layout));

@@ -16,9 +16,9 @@ const validateSignUp = user => {
       .min(8)
       .max(26)
       .required(),
-    confirmPassword: Joi.any()
-      .valid(Joi.ref('password'))
+    confirmPassword: Joi.string()
       .required()
+      .valid(Joi.ref('password'))
   };
 
   return (
