@@ -6,6 +6,8 @@ import store from '../store';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../axios/setAuthToken';
 import PropTypes from 'prop-types';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 // Check for toekn
 if (localStorage.jwtToken) {
@@ -29,7 +31,10 @@ if (localStorage.jwtToken) {
 const Layout = ({ children }) => (
   <div>
     {/* Add Header Here */}
+    <Navbar />
+
     {children}
+    <Footer />
   </div>
 );
 

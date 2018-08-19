@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import NavbarReact from './components/navbar';
 import asyncComponent from './utils/asyncComponent';
 import Layout from './containers/Layout';
 // import PrivateRoute from './components/PrivateRoute'
@@ -13,7 +12,6 @@ const Login = asyncComponent(() => import('./containers/Login'));
 const App = () => {
   return (
     <div>
-      <NavbarReact />
       <Layout>
         <Route exact path="/homepage" component={Homepage} />
         <Route exact path="/signup" component={SignUp} />
