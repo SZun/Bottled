@@ -21,7 +21,7 @@ export const registerUser = (userData, history) => async dispatch => {
 export const loginUser = (userData, history) => async dispatch => {
   try {
     // Log Current User Out
-    dispatch(logoutUser());
+    dispatch(logoutUser(history));
     // Hit login route on backend
     const user = await axios.post('/login', userData);
     // Save to local storage
@@ -34,8 +34,8 @@ export const loginUser = (userData, history) => async dispatch => {
     const decoded = jwt_decode(token);
     // Set current user
     dispatch(setCurrentUser(decoded));
-    // Redirect user to '/banan' route
-    history.push('/banan');
+    // Redirect user to to the Homepage
+    history.push('/homepage');
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -51,13 +51,17 @@ export const setCurrentUser = decoded => ({
 });
 
 // Log user out
-export const logoutUser = () => dispatch => {
+export const logoutUser = history => dispatch => {
   // Remove token from localstorage
   localStorage.removeItem('jwtToken');
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+  // Redirect to Login
+  if (window.location.href !== '/login') {
+    history.push('/login');
+  }
 };
 
 export const clearErrors = () => ({ type: CLEAR_ERRORS });

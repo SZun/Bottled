@@ -15,7 +15,7 @@ const App = () => {
     <div>
       <NavbarReact />
       <Layout>
-        <Route exact path="/" component={Homepage} />
+        <Route exact path="/homepage" component={Homepage} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
       </Layout>
