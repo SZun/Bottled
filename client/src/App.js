@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import asyncComponent from './utils/asyncComponent';
 import Layout from './containers/Layout';
 import PrivateRoute from './components/PrivateRoute';
@@ -19,9 +19,10 @@ const App = () => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/404" component={NotFound} />
           <PrivateRoute exact path="/checkout" component={Checkout} />
-          <Route path="*" component={NotFound} />
         </Switch>
+        <Redirect to="/404" />
       </Layout>
     </div>
   );
