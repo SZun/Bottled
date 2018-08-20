@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Icon } from 'react-materialize';
+import './Input.css';
 
 const TextInput = ({
   placeholder,
