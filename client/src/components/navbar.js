@@ -5,45 +5,80 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import NavBarItem from '../components/NavItem';
 
 class NavbarReact extends Component {
   handleLogout = () => {
     this.props.logoutUser(this.props.history);
   };
 
+  goToPage = page => {
+    this.props.history.push(page);
+  };
+
   render() {
+    const unauthenticated = [
+      {
+        content: `Login`,
+        iconName: 'person',
+        page: '/login'
+      },
+      {
+        content: `Sign Up`,
+        iconName: 'person',
+        page: '/signup'
+      }
+    ];
+
+    const authenticated = [
+      {
+        content: `Shop`,
+        iconName: 'attach_money',
+        page: '/shop'
+      },
+      {
+        content: 'Logout',
+        iconName: 'redo'
+      }
+    ];
     let navItems = (
       <div>
-        <NavItem onClick={() => this.props.history.push('/')}>
-          <Button large iconName="home" right>
-            Home
-          </Button>
-        </NavItem>
-        <NavItem onClick={() => this.props.history.push('/login')}>
-          <Button large iconName="person" left>
-            Log In
-          </Button>
-        </NavItem>
-        <NavItem onClick={() => this.props.history.push('/signup')}>
-          <Button large iconName="person_add" left>
-            Sign Up
-          </Button>
-        </NavItem>
+        <NavBarItem
+          iconName="home"
+          right
+          onClick={() => this.props.history.push('/')}
+        >
+          Home
+        </NavBarItem>
+        {unauthenticated.map(item => (
+          <NavBarItem
+            iconName={item.iconName}
+            left
+            onClick={() => this.goToPage(item.page)}
+            key={item.content}
+          >
+            {item.content}
+          </NavBarItem>
+        ))}
       </div>
     );
     if (this.props.auth.isAuthenticated) {
       navItems = (
         <div>
-          <NavItem onClick={() => this.props.history.push('/shop')}>
-            <Button large iconName="attach_money" right>
-              Shop
-            </Button>
-          </NavItem>
-          <NavItem onClick={this.handleLogout}>
-            <Button large iconName="redo" right>
-              Logout
-            </Button>
-          </NavItem>
+          {authenticated.map(item => (
+            <NavBarItem
+              iconName={item.iconName}
+              left
+              onClick={
+                item.page
+                  ? () => this.goToPage(item.page)
+                  : () => this.handleLogout()
+              }
+              key={item.content}
+            >
+              {item.content ? item.content : null}
+            </NavBarItem>
+          ))}
           <NavItem onClick={() => this.props.history.push('/checkout')}>
             <Button large iconName="shopping_cart" />
           </NavItem>
@@ -51,9 +86,16 @@ class NavbarReact extends Component {
       );
     }
     return (
-      <Navbar brand="Bottled" right onClick={e => e.preventDefault()}>
-        {navItems}
-      </Navbar>
+      <div className="navbar-fixed">
+        <Navbar
+          className="deep-orange accent-2"
+          brand="Bottled"
+          right
+          onClick={e => e.preventDefault()}
+        >
+          {navItems}
+        </Navbar>
+      </div>
     );
   }
 }

@@ -5,11 +5,11 @@ import Layout from './containers/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute';
 
 // Lazy Loading Components
-const Homepage = asyncComponent(() => import('./containers/Homepage'));
 const SignUp = asyncComponent(() => import('./containers/SignIn'));
 const Login = asyncComponent(() => import('./containers/Login'));
 const Checkout = asyncComponent(() => import('./containers/Checkout'));
 const NotFound = asyncComponent(() => import('./containers/NotFound'));
+const Homepage = asyncComponent(() => import('./containers/Homepage'));
 
 const App = () => {
   return (
