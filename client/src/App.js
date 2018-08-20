@@ -9,18 +9,20 @@ const Homepage = asyncComponent(() => import('./containers/Homepage'));
 const SignUp = asyncComponent(() => import('./containers/SignIn'));
 const Login = asyncComponent(() => import('./containers/Login'));
 const Checkout = asyncComponent(() => import('./containers/Checkout'));
+const NotFound = asyncComponent(() => import('./containers/NotFound'));
 
 const App = () => {
   return (
     <div>
       <Layout>
-        <Route exact path="/" component={Homepage} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/login" component={Login} />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/checkout" component={Checkout} />
+          <Route path="*" component={NotFound} />
+        </Switch>
       </Layout>
-      <Switch>
-        <PrivateRoute exact path="/checkout" component={Checkout} />
-      </Switch>
     </div>
   );
 };
