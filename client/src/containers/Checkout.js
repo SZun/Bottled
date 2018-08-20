@@ -12,7 +12,7 @@ class Checkout extends Component {
     year: '',
     securityCode: '',
     name: '',
-    select: '',
+    country: '',
     zipCode: ''
   };
 
@@ -29,7 +29,7 @@ class Checkout extends Component {
       year,
       securityCode,
       name,
-      select,
+      country,
       zipCode
     } = this.state;
     const dateVals = [
@@ -39,7 +39,8 @@ class Checkout extends Component {
         label: 'Month',
         type: 'text',
         s: 3,
-        value: month
+        value: month,
+        iconVal: 'perm_contact_calendar'
       },
       {
         placeholder: '2020',
@@ -47,7 +48,8 @@ class Checkout extends Component {
         label: 'Year',
         type: 'text',
         s: 3,
-        value: year
+        value: year,
+        iconVal: 'perm_contact_calendar'
       },
       {
         placeholder: '123',
@@ -55,7 +57,8 @@ class Checkout extends Component {
         label: 'Security Code',
         type: 'text',
         s: 3,
-        value: securityCode
+        value: securityCode,
+        iconVal: 'lock_outline'
       }
     ];
 
@@ -66,6 +69,7 @@ class Checkout extends Component {
         name={inpt.name}
         value={inpt.value}
         type={inpt.type}
+        iconVal={inpt.iconVal}
         onChange={this.onChangeHandler}
         label={inpt.label}
         key={inpt.name}
@@ -78,6 +82,7 @@ class Checkout extends Component {
           placeholder="4242 4242 4242 4242"
           name="creditCard"
           label="Credit Card"
+          iconVal="credit_card"
           type="text"
           onChange={this.onChangeHandler}
           s={12}
@@ -91,22 +96,25 @@ class Checkout extends Component {
           type="text"
           onChange={this.onChangeHandler}
           s={12}
+          iconVal="account_circle"
           value={name}
         />
         <Row>
           <Input
-            placeholder="select"
-            name="select"
+            placeholder="United States"
+            name="country"
             label="Country"
+            iconVal="vpn_lock"
             onChange={this.onChangeHandler}
             type="text"
             s={8}
-            value={select}
+            value={country}
           />
           <Input
             placeholder="60035"
             name="zipCode"
             label="Zip Code"
+            iconVal="map"
             onChange={this.onChangeHandler}
             type="text"
             s={4}

@@ -47,7 +47,8 @@ class Login extends Component {
         type: 'email',
         s: 12,
         value: email,
-        error: errors.email ? errors.email : null
+        error: errors.email ? errors.email : null,
+        iconVal: 'email'
       },
       {
         placeholder: 'Passw0rd!',
@@ -55,7 +56,8 @@ class Login extends Component {
         type: 'password',
         s: 12,
         value: password,
-        error: errors.password ? errors.password : null
+        error: errors.password ? errors.password : null,
+        iconVal: 'lock_outline'
       }
     ];
 
@@ -66,6 +68,7 @@ class Login extends Component {
         name={inpt.type}
         value={inpt.value}
         type={inpt.type}
+        iconVal={inpt.iconVal}
         onChange={this.onChangeHandler}
         label={inpt.label}
         key={inpt.type}
