@@ -47,6 +47,7 @@ class SignUp extends Component {
     const inputData = [
       {
         placeholder: 'Your Name',
+        iconVal: 'account_circle',
         label: 'Name',
         type: 'text',
         name: 'name',
@@ -57,6 +58,7 @@ class SignUp extends Component {
       {
         placeholder: 'email@domain.com',
         label: 'Email',
+        iconVal: 'email',
         type: 'email',
         name: 'email',
         s: 12,
@@ -66,6 +68,7 @@ class SignUp extends Component {
       {
         placeholder: 'Passw0rd!',
         label: 'Password',
+        iconVal: 'lock_outline',
         type: 'password',
         name: 'password',
         s: 12,
@@ -75,6 +78,7 @@ class SignUp extends Component {
       {
         placeholder: 'Confirm Passw0rd!',
         label: 'Confirm Password',
+        iconVal: 'check_circle',
         type: 'password',
         name: 'confirmPassword',
         s: 12,
@@ -90,6 +94,7 @@ class SignUp extends Component {
         name={inpt.name}
         value={inpt.value}
         type={inpt.type}
+        iconVal={inpt.iconVal}
         onChange={this.onChangeHandler}
         label={inpt.label}
         key={inpt.name}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'react-materialize';
+import { Input, Icon } from 'react-materialize';
 
 const TextInput = ({
   placeholder,
@@ -9,7 +9,8 @@ const TextInput = ({
   error,
   value,
   name,
-  onChange
+  onChange,
+  iconVal
 }) => (
   <div>
     <p
@@ -35,7 +36,15 @@ const TextInput = ({
             }
           : null
       }
-    />
+    >
+      <Icon
+        style={{
+          color: '#40c4ff'
+        }}
+      >
+        {iconVal}
+      </Icon>
+    </Input>
   </div>
 );
 

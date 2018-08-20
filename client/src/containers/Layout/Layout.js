@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentUser, logoutUser } from '../store/actions/authActions';
+import { setCurrentUser, logoutUser } from '../../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
-import store from '../store';
+import store from '../../store';
 import jwt_decode from 'jwt-decode';
-import setAuthToken from '../axios/setAuthToken';
+import setAuthToken from '../../axios/setAuthToken';
 import PropTypes from 'prop-types';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 
 // Check for toekn
 if (localStorage.jwtToken) {

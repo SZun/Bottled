@@ -14,6 +14,11 @@ class NavbarReact extends Component {
   render() {
     let navItems = (
       <div>
+        <NavItem onClick={() => this.props.history.push('/')}>
+          <Button large iconName="home" right>
+            Home
+          </Button>
+        </NavItem>
         <NavItem onClick={() => this.props.history.push('/login')}>
           <Button large iconName="person" left>
             Log In
@@ -29,15 +34,18 @@ class NavbarReact extends Component {
     if (this.props.auth.isAuthenticated) {
       navItems = (
         <div>
-          <NavItem onClick={() => this.props.history.push('/homepage')}>
-            <Button large iconName="home" right>
-              Home
+          <NavItem onClick={() => this.props.history.push('/shop')}>
+            <Button large iconName="attach_money" right>
+              Shop
             </Button>
           </NavItem>
           <NavItem onClick={this.handleLogout}>
             <Button large iconName="redo" right>
               Logout
             </Button>
+          </NavItem>
+          <NavItem onClick={() => this.props.history.push('/checkout')}>
+            <Button large iconName="shopping_cart" />
           </NavItem>
         </div>
       );

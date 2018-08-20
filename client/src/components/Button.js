@@ -5,7 +5,7 @@ const CustomButton = ({ iconName, children, onClick, right, left, large }) => {
   return (
     <div>
       <Button
-        className="z-depth-3"
+        className="z-depth-3 light-blue accent-2"
         waves="light"
         large={large}
         onClick={onClick}
