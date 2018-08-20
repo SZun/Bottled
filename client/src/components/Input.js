@@ -37,7 +37,13 @@ const TextInput = ({
           : null
       }
     >
-      <Icon>{iconVal}</Icon>
+      <Icon
+        style={{
+          color: '#40c4ff'
+        }}
+      >
+        {iconVal}
+      </Icon>
     </Input>
   </div>
 );

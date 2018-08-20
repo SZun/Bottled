@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import asyncComponent from './utils/asyncComponent';
-import Layout from './containers/Layout';
+import Layout from './containers/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute';
 
 // Lazy Loading Components
@@ -19,10 +19,10 @@ const App = () => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/404" component={NotFound} />
           <PrivateRoute exact path="/checkout" component={Checkout} />
+          {/* If Route not found, redirect to 404 page */}
+          <Route path="*" component={NotFound} />
         </Switch>
-        <Redirect to="/404" />
       </Layout>
     </div>
   );
