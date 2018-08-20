@@ -43,7 +43,7 @@ class Checkout extends Component {
         iconVal: 'perm_contact_calendar'
       },
       {
-        placeholder: '2020',
+        placeholder: '20',
         name: 'year',
         label: 'Year',
         type: 'text',
