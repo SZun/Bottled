@@ -35,7 +35,7 @@ export const loginUser = (userData, history) => async dispatch => {
     // Set current user
     dispatch(setCurrentUser(decoded));
     // Redirect user to to the Homepage
-    history.push('/homepage');
+    history.push('/shop');
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

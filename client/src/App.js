@@ -1,13 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import asyncComponent from './utils/asyncComponent';
 import Layout from './containers/Layout';
-// import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 
 // Lazy Loading Components
 const Homepage = asyncComponent(() => import('./containers/Homepage'));
 const SignUp = asyncComponent(() => import('./containers/SignIn'));
 const Login = asyncComponent(() => import('./containers/Login'));
+const Checkout = asyncComponent(() => import('./containers/Checkout'));
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
       </Layout>
+      <Switch>
+        <PrivateRoute exact path="/checkout" component={Checkout} />
+      </Switch>
     </div>
   );
 };

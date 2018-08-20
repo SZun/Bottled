@@ -3,16 +3,15 @@ import {
   FETCH_ORDERS,
   CLEAR_ERRORS,
   GET_ERRORS,
-  CREATE_ORDER
+  CREATE_ORDER,
+  LOADING
 } from './types';
 import axios from '../../axios/orderRoutes';
 
 // Get Current Order
 export const fetchOrder = id => async dispatch => {
   try {
-    dispatch({
-      type: CLEAR_ERRORS
-    });
+    dispatch(loading());
     const orders = await axios.get(`/${id}`);
     dispatch({
       type: FETCH_ORDER,
@@ -27,14 +26,12 @@ export const fetchOrder = id => async dispatch => {
 };
 
 // Get all orders
-export const fetchOrders = () => async dispatch => {
+export const fetchOrders = (user_id, id) => async dispatch => {
   try {
+    dispatch(loading());
+    const orders = await axios.get(`/${user_id}/${id}`);
     dispatch({
-      type: CLEAR_ERRORS
-    });
-    const orders = await axios.get('/');
-    dispatch({
-      type: FETCH_ORDER,
+      type: FETCH_ORDERS,
       payload: orders.data
     });
   } catch (err) {
@@ -63,3 +60,8 @@ export const createOrder = id => async dispatch => {
     });
   }
 };
+
+const loading = dispatch =>
+  dispatch({
+    type: LOADING
+  });

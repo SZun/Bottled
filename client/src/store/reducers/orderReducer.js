@@ -1,4 +1,9 @@
-import { FETCH_ORDER, CREATE_ORDER, FETCH_ORDERS } from '../actions/types';
+import {
+  FETCH_ORDER,
+  CREATE_ORDER,
+  FETCH_ORDERS,
+  LOADING
+} from '../actions/types';
 
 const initialState = {
   loading: false,
@@ -8,6 +13,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     case FETCH_ORDER:
       return {
         ...state,
