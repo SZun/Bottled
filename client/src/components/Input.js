@@ -31,7 +31,7 @@ const TextInput = ({
       style={
         error
           ? {
-              backgroundColor: '#DB9797',
+              backgroundColor: '#d49292',
               border: '1px solid #FF0000'
             }
           : null
