@@ -30,9 +30,15 @@ if (localStorage.jwtToken) {
 
 const Layout = ({ children }) => (
   <div>
-    <Navbar />
-    {children}
-    <Footer />
+    <header>
+      <nav>
+        <Navbar />
+      </nav>
+    </header>
+    <main>{children}</main>
+    <footer>
+      <Footer />
+    </footer>
   </div>
 );
 

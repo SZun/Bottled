@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Input from '../components/Input';
+import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import { Row } from 'react-materialize';
 

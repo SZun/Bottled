@@ -28,7 +28,7 @@ const Homepage = () => (
           WebkitTextFillColor: 'transparent'
         }}
       >
-        Bottled
+        {`B O T T L E D`}
       </h1>
     </div>
   </div>

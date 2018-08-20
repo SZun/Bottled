@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterComponent = () => (
   <div
-    className="deep-orange accent-2"
+    className="deep-orange accent-2 z-depth-5"
     style={{
       position: 'fixed',
       height: '50px',
