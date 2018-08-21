@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: '/api/users'
+  baseURL: '/api/orders'
 });
 
 export default instance;

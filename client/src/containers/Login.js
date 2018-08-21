@@ -4,6 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { loginUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
 
+import Input from '../components/Input/Input';
+import Button from '../components/Button';
+
 class Login extends Component {
   state = {
     email: '',
@@ -36,59 +39,49 @@ class Login extends Component {
 
   render() {
     const { password, email, errors } = this.state;
+
+    const inputData = [
+      {
+        placeholder: 'email@domain.com',
+        label: 'Email',
+        type: 'email',
+        s: 12,
+        value: email,
+        error: errors.email ? errors.email : null,
+        iconVal: 'email'
+      },
+      {
+        placeholder: 'Passw0rd!',
+        label: 'Password',
+        type: 'password',
+        s: 12,
+        value: password,
+        error: errors.password ? errors.password : null,
+        iconVal: 'lock_outline'
+      }
+    ];
+
+    const inputContent = inputData.map(inpt => (
+      <Input
+        placeholder={inpt.placeholder}
+        s={inpt.s}
+        name={inpt.type}
+        value={inpt.value}
+        type={inpt.type}
+        iconVal={inpt.iconVal}
+        onChange={this.onChangeHandler}
+        label={inpt.label}
+        key={inpt.type}
+        error={inpt.error}
+      />
+    ));
+
     return (
-      <div>
-        <input
-          formNoValidate
-          name="email"
-          value={email}
-          onChange={this.onChangeHandler}
-          type="email"
-          style={
-            errors.email
-              ? {
-                  backgroundColor: '#DB9797',
-                  border: '1px solid #FF0000'
-                }
-              : null
-          }
-        />
-        {errors.email ? (
-          <p
-            style={{
-              color: '#FF0000'
-            }}
-          >
-            {errors.email}
-          </p>
-        ) : null}
-        <input
-          formNoValidate
-          name="password"
-          value={password}
-          style={
-            errors.password
-              ? {
-                  backgroundColor: '#DB9797',
-                  border: '1px solid #FF0000'
-                }
-              : null
-          }
-          onChange={this.onChangeHandler}
-          type="password"
-        />
-        {errors.password ? (
-          <p
-            style={{
-              color: '#FF0000'
-            }}
-          >
-            {errors.password}
-          </p>
-        ) : null}
-        <button type="submit" onClick={this.onSubmitHandler}>
+      <div className="container" style={{ marginTop: '5%' }}>
+        {inputContent}
+        <Button onClick={this.onSubmitHandler} iconName="check" right large>
           Submit
-        </button>
+        </Button>
       </div>
     );
   }
