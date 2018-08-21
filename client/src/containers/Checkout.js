@@ -124,6 +124,7 @@ class Checkout extends Component {
         <Button iconName="check" right large>
           Submit
         </Button>
+        <h1>Add staging orders here</h1>
       </div>
     );
   }

@@ -37,6 +37,11 @@ class NavbarReact extends Component {
         page: '/shop'
       },
       {
+        content: `Orders`,
+        iconName: 'markunread_mailbox',
+        page: '/orders'
+      },
+      {
         content: 'Logout',
         iconName: 'redo'
       }

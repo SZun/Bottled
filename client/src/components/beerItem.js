@@ -1,19 +1,31 @@
 import React from 'react';
 import { Col } from 'react-materialize';
-import { Link } from 'react-router-dom';
+import { Button, Icon } from 'react-materialize';
 
-const BeerItem = ({ image, description, link }) => (
+const BeerItem = ({ image, description, name, onClick }) => (
   <Col s={3}>
-    <div class="card horizontal">
-      <div class="card-image">
+    <div className="card horizontal">
+      <div className="card-image">
         <img src={image} alt="beer" />
       </div>
-      <div class="card-stacked">
-        <div class="card-content">
+      <div className="card-stacked">
+        <div className="card-content">
+          <h5>
+            <strong
+              style={{
+                textAlign: 'center',
+                textDecoration: 'underline'
+              }}
+            >
+              {name}
+            </strong>
+          </h5>
           <p>{description}</p>
         </div>
-        <div class="card-action">
-          <Link to={link}>Buy Now</Link>
+        <div className="card-action">
+          <Button onClick={onClick} className="z-depth-3 light-blue accent-2">
+            <Icon>add</Icon>
+          </Button>
         </div>
       </div>
     </div>
