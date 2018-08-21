@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import NavBarItem from '../components/NavItem';
+import NavBarItem from './NavItem';
 
 class NavbarReact extends Component {
   handleLogout = () => {

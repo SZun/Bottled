@@ -1,16 +1,22 @@
 import React from 'react';
-import { Col, Card, CardTitle } from 'react-materialize';
+import { Col } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
-const BeerItem = props => (
-  <Col m={7} s={12}>
-    <Card
-      horizontal
-      header={<CardTitle image={props.image} />}
-      actions={[<Link to={props.to}>{props.link}</Link>]}
-    >
-      <p>{props.description}</p>
-    </Card>
+const BeerItem = ({ image, description, link }) => (
+  <Col s={3}>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src={image} alt="beer" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>{description}</p>
+        </div>
+        <div class="card-action">
+          <Link to={link}>Buy Now</Link>
+        </div>
+      </div>
+    </div>
   </Col>
 );
 
