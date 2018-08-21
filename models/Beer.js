@@ -22,11 +22,14 @@ const BeerSchema = new Schema({
       type: String,
       required: true
   },
+  price: {
+    type: NumberDecimal,
+    required: true
+  },
   breweryId: {
       type: Schema.Types.ObjectId,
       ref: "Brewery"
   }
-
 });
 
 const Beer = mongoose.model('beer', userSchema);
