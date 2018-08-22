@@ -299,7 +299,15 @@ class SignUp extends Component {
             error={errors.zipCode ? errors.zipCode : null}
           />
         </Row>
-        <Button onClick={this.onSubmitHandler} iconName="check" right large>
+        <Button
+          style={{
+            zIndex: 1
+          }}
+          onClick={this.onSubmitHandler}
+          iconName="check"
+          right
+          large
+        >
           Submit
         </Button>
       </div>

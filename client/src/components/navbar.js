@@ -91,14 +91,16 @@ class NavbarReact extends Component {
       );
     }
     return (
-      <Navbar
-        className="deep-orange accent-2"
-        brand="Bottled"
-        right
-        onClick={e => e.preventDefault()}
-      >
-        {navItems}
-      </Navbar>
+      <div className="navbar-fixed">
+        <Navbar
+          className="deep-orange accent-2"
+          brand="Bottled"
+          right
+          onClick={e => e.preventDefault()}
+        >
+          {navItems}
+        </Navbar>
+      </div>
     );
   }
 }
