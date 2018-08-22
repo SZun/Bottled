@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { registerUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
+import { Row } from 'react-materialize';
 
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
@@ -13,6 +14,11 @@ class SignUp extends Component {
     email: '',
     password: '',
     confirmPassword: '',
+    state: '',
+    city: '',
+    streetAddress: '',
+    zipCode: '',
+    birthDate: '',
     errors: {}
   };
 
@@ -31,18 +37,44 @@ class SignUp extends Component {
   onSubmitHandler = e => {
     e.preventDefault();
     this.props.clearErrors();
-    const { password, email, name, confirmPassword } = this.state;
+    const {
+      password,
+      email,
+      name,
+      confirmPassword,
+      birthDate,
+      streetAddress,
+      city,
+      state,
+      zipCode
+    } = this.state;
     const userData = {
       email,
       name,
       confirmPassword,
-      password
+      password,
+      birthDate,
+      streetAddress,
+      city,
+      state,
+      zipCode
     };
     this.props.registerUser(userData, this.props.history);
   };
 
   render() {
-    const { password, email, name, confirmPassword, errors } = this.state;
+    const {
+      password,
+      email,
+      name,
+      confirmPassword,
+      errors,
+      birthDate,
+      streetAddress,
+      city,
+      state,
+      zipCode
+    } = this.state;
 
     const inputData = [
       {
@@ -84,8 +116,40 @@ class SignUp extends Component {
         s: 12,
         value: confirmPassword,
         error: errors.confirmPassword ? errors.confirmPassword : null
+      },
+      {
+        placeholder: '03/01/1997',
+        label: 'Birth Date',
+        iconVal: 'today',
+        type: 'text',
+        name: 'birthDate',
+        s: 12,
+        value: birthDate,
+        error: errors.birthDate ? errors.birthDate : null
       }
     ];
+
+    //   {
+    //     placeholder: 'Chicago',
+    //     label: 'City',
+    //     iconVal: 'location_city',
+    //     type: 'text',
+    //     name: 'city',
+    //     s: 8,
+    //     value: city,
+    //     error: errors.city ? errors.city : null
+    //   },
+    //   {
+    //     placeholder: '60176',
+    //     label: 'zipCode',
+    //     iconVal: 'grid_on',
+    //     type: 'number',
+    //     name: 'zipCode',
+    //     s: 2,
+    //     value: zipCode,
+    //     error: errors.zipCode ? errors.zipCode : null
+    //   }
+    // ];
 
     const inputContent = inputData.map(inpt => (
       <Input
@@ -105,6 +169,50 @@ class SignUp extends Component {
     return (
       <div className="container" style={{ marginTop: '5%' }}>
         {inputContent}
+        <Row>
+          <Input
+            placeholder="1600 Pennsylvania Ave"
+            label="Street Address"
+            iconVal="theaters"
+            type="text"
+            name="streetAddress"
+            s={10}
+            value={streetAddress}
+            error={errors.streetAddress ? errors.streetAddress : null}
+          />
+          <Input
+            placeholder="IL"
+            label="State"
+            iconVal="landscape"
+            type="text"
+            name="state"
+            s={2}
+            value={state}
+            error={errors.state ? errors.state : null}
+          />
+        </Row>
+        <Row>
+          <Input
+            placeholder="Chicago"
+            label="City"
+            iconVal="location_city"
+            type="text"
+            name="city"
+            s={10}
+            value={city}
+            error={errors.city ? errors.city : null}
+          />
+          <Input
+            placeholder="60176"
+            label="Zip Code"
+            iconVal="grid_on"
+            type="number"
+            name="zipCode"
+            s={2}
+            value={zipCode}
+            error={errors.zipCode ? errors.zipCode : null}
+          />
+        </Row>
         <Button onClick={this.onSubmitHandler} iconName="check" right large>
           Submit
         </Button>

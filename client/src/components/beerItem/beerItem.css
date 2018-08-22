@@ -9,7 +9,7 @@
   overflow: scroll;
 }
 
-img {
+.beerImg img {
   height: 250px;
   width: 100px;
 }

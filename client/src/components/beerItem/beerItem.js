@@ -5,7 +5,7 @@ import './beerItem.css';
 
 const BeerItem = ({ image, description, name, onClick }) => (
   <Col s={3}>
-    <div className="card horizontal">
+    <div className="card horizontal beerImg">
       <div className="card-image">
         <img src={image} alt="beer" />
       </div>

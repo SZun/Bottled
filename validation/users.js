@@ -19,6 +19,28 @@ const validateSignUp = user => {
     confirmPassword: Joi.string()
       .required()
       .valid(Joi.ref('password'))
+      .min(8)
+      .max(26),
+    birthDate: Joi.string()
+      .min(8)
+      .max(8)
+      .required(),
+    state: Joi.string()
+      .min(2)
+      .max(2)
+      .required(),
+    city: Joi.string()
+      .min(2)
+      .max(50)
+      .required(),
+    streetAddress: Joi.string()
+      .min(6)
+      .max(100)
+      .required(),
+    zipCode: Joi.number()
+      .min(5)
+      .max(5)
+      .required()
   };
 
   return (

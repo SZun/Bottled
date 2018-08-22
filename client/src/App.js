@@ -5,7 +5,7 @@ import Layout from './containers/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute';
 
 // Lazy Loading Components
-const SignUp = asyncComponent(() => import('./containers/SignIn'));
+const SignUp = asyncComponent(() => import('./containers/SignUp'));
 const Login = asyncComponent(() => import('./containers/Login'));
 const Checkout = asyncComponent(() => import('./containers/Checkout'));
 const NotFound = asyncComponent(() => import('./containers/NotFound'));

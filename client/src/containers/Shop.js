@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
-import Sidebar from '../components/SideBar';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 
@@ -40,12 +39,7 @@ class Shop extends Component {
       ) : (
         <Spinner />
       );
-    return (
-      <Row>
-        <Sidebar />
-        {allBeerItems}
-      </Row>
-    );
+    return <Row>{allBeerItems}</Row>;
   }
 }
 

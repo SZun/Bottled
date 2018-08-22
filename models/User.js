@@ -9,9 +9,12 @@ const userSchema = new Schema({
     minlength: 5,
     maxlength: 50
   },
-  dateofbirth: {
-    type: Date,
-    required: true
+  birthDate: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 8,
+    maxlength: 8
   },
   email: {
     type: String,
@@ -25,11 +28,33 @@ const userSchema = new Schema({
     minlength: 5,
     maxlength: 1024
   },
-  address: {
-    state: String,
-    city: String,
-    street: String,
-    houseNumber: String
+  state: {
+    type: String,
+    minlength: 2,
+    maxlength: 2,
+    required: true,
+    trim: true
+  },
+  city: {
+    type: String,
+    minlength: 2,
+    maxlength: 50,
+    required: true,
+    trim: true
+  },
+  streetAddress: {
+    type: String,
+    minlength: 6,
+    maxlength: 100,
+    required: true,
+    trim: true
+  },
+  zipCode: {
+    type: Number,
+    minlength: 5,
+    maxlength: 5,
+    required: true,
+    trim: true
   }
 });
 

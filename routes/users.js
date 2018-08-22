@@ -37,6 +37,18 @@ router.post('/signup', async (req, res) => {
         case 'confirmPassword':
           errors[key] = 'passwords must match';
           break;
+        case 'state':
+          errors[key] = 'state field is invalid';
+          break;
+        case 'city':
+          errors[key] = 'city field is invalid';
+          break;
+        case 'streetAdress':
+          errors[key] = 'street address field is invalid';
+          break;
+        case 'zipCode':
+          errors[key] = 'zip code is invalid';
+          break;
         default:
           return;
       }
@@ -44,7 +56,16 @@ router.post('/signup', async (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const { name, email, password, confirmPassword } = req.body;
+  const {
+    name,
+    email,
+    password,
+    confirmPassword,
+    state,
+    city,
+    streetAddress,
+    zipCode
+  } = req.body;
 
   let user = await User.findOne({ email });
   if (user) {
@@ -55,7 +76,11 @@ router.post('/signup', async (req, res) => {
       name,
       email,
       password,
-      confirmPassword
+      confirmPassword,
+      state,
+      city,
+      streetAddress,
+      zipCode
     });
 
     bcrypt.genSalt(10, (err, salt) => {

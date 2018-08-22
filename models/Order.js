@@ -3,10 +3,30 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema({
   beer: {
-    name: String,
-    description: String,
-    imageUrl: String,
-    price: 4.99
+    name: {
+      type: String,
+      minlength: 6,
+      maxlength: 100,
+      required: true,
+      trim: true
+    },
+    description: {
+      type: String,
+      minlength: 6,
+      maxlength: 100,
+      required: true,
+      trim: true
+    },
+    imageUrl: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 4.99
+    }
   },
   user: {
     type: Schema.Types.ObjectId,
