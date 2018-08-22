@@ -43,7 +43,7 @@ router.post('/signup', async (req, res) => {
         case 'city':
           errors[key] = 'city field is invalid';
           break;
-        case 'streetAdress':
+        case 'streetAddress':
           errors[key] = 'street address field is invalid';
           break;
         case 'zipCode':
@@ -61,6 +61,7 @@ router.post('/signup', async (req, res) => {
     email,
     password,
     confirmPassword,
+    birthDate,
     state,
     city,
     streetAddress,
@@ -77,6 +78,7 @@ router.post('/signup', async (req, res) => {
       email,
       password,
       confirmPassword,
+      birthDate,
       state,
       city,
       streetAddress,

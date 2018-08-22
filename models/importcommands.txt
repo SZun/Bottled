@@ -1,7 +1,0 @@
-mongoimport --host [url] -d [db] --username [user] --password [password] -c [collection] --type csv --file [local location] --headerline
-
-mongoimport -h ds125862.mlab.com:25862 -d bottled-user -c breweries -u NCBBottled2018 -p 
- --file breweries.csv --type csv --headerline
-
- mongoimport -h ds125862.mlab.com:25862 -d bottled-user -c beer -u NCBBottled2018 -p '2018NCBBottled' --file beers.csv --type csv -
--headerline

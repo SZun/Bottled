@@ -13,8 +13,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 8,
-    maxlength: 8
+    minlength: 10,
+    maxlength: 10
   },
   email: {
     type: String,
@@ -51,8 +51,6 @@ const userSchema = new Schema({
   },
   zipCode: {
     type: Number,
-    minlength: 5,
-    maxlength: 5,
     required: true,
     trim: true
   }

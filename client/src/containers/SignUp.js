@@ -124,32 +124,9 @@ class SignUp extends Component {
         type: 'text',
         name: 'birthDate',
         s: 12,
-        value: birthDate,
-        error: errors.birthDate ? errors.birthDate : null
+        value: birthDate
       }
     ];
-
-    //   {
-    //     placeholder: 'Chicago',
-    //     label: 'City',
-    //     iconVal: 'location_city',
-    //     type: 'text',
-    //     name: 'city',
-    //     s: 8,
-    //     value: city,
-    //     error: errors.city ? errors.city : null
-    //   },
-    //   {
-    //     placeholder: '60176',
-    //     label: 'zipCode',
-    //     iconVal: 'grid_on',
-    //     type: 'number',
-    //     name: 'zipCode',
-    //     s: 2,
-    //     value: zipCode,
-    //     error: errors.zipCode ? errors.zipCode : null
-    //   }
-    // ];
 
     const inputContent = inputData.map(inpt => (
       <Input
@@ -178,6 +155,7 @@ class SignUp extends Component {
             name="streetAddress"
             s={10}
             value={streetAddress}
+            onChange={this.onChangeHandler}
             error={errors.streetAddress ? errors.streetAddress : null}
           />
           <Input
@@ -188,6 +166,7 @@ class SignUp extends Component {
             name="state"
             s={2}
             value={state}
+            onChange={this.onChangeHandler}
             error={errors.state ? errors.state : null}
           />
         </Row>
@@ -200,6 +179,7 @@ class SignUp extends Component {
             name="city"
             s={10}
             value={city}
+            onChange={this.onChangeHandler}
             error={errors.city ? errors.city : null}
           />
           <Input
@@ -210,6 +190,7 @@ class SignUp extends Component {
             name="zipCode"
             s={2}
             value={zipCode}
+            onChange={this.onChangeHandler}
             error={errors.zipCode ? errors.zipCode : null}
           />
         </Row>
