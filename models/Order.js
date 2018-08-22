@@ -2,10 +2,11 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-  beerName: {
-    type: String,
-    required: true,
-    trim: true
+  beer: {
+    name: String,
+    description: String,
+    imageUrl: String,
+    price: 4.99
   },
   _user: {
     type: Schema.Types.ObjectId,
@@ -23,7 +24,8 @@ const orderSchema = new Schema({
   },
   status: {
     type: String,
-    trim: true
+    trim: true,
+    default: false
   }
 });
 

@@ -23,7 +23,7 @@ const beerSchema = new Schema({
     required: true
   },
   price: {
-    type: NumberDecimal,
+    type: Number,
     required: true
   },
   breweryId: {
