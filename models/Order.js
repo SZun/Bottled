@@ -2,12 +2,13 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
-  beerName: {
-    type: String,
-    required: true,
-    trim: true
+  beer: {
+    name: String,
+    description: String,
+    imageUrl: String,
+    price: 4.99
   },
-  _user: {
+  user: {
     type: Schema.Types.ObjectId,
     required: true
   },
@@ -21,9 +22,14 @@ const orderSchema = new Schema({
     required: true,
     maxlength: 10
   },
-  status: {
+  shippingStatus: {
     type: String,
-    trim: true
+    trim: true,
+    default: false
+  },
+  purchased: {
+    type: Boolean,
+    default: false
   }
 });
 
