@@ -2,19 +2,29 @@ import React from 'react';
 
 const FooterComponent = () => (
   <div
-    className="deep-orange accent-2 z-depth-5"
     style={{
-      position: 'fixed',
-      height: '50px',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      marginBottom: 0,
-      textAlign: 'center',
-      color: '#FFFFFF'
+      display: 'block',
+      padding: '20px',
+      height: '60px',
+      width: '100%'
     }}
   >
-    <h5>Copyright &copy; {new Date().getFullYear()} Bottled</h5>
+    <div
+      className="deep-orange accent-2 z-depth-5"
+      style={{
+        textAlign: 'center',
+        padding: '10px',
+        position: 'fixed',
+        left: '0',
+        bottom: '0',
+        height: '60px',
+        width: '100%',
+        color: '#FFF',
+        zIndex: 2
+      }}
+    >
+      <h5>Copyright &copy; {new Date().getFullYear()} Bottled</h5>
+    </div>
   </div>
 );
 export default FooterComponent;
