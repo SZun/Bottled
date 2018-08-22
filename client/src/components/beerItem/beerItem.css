@@ -1,0 +1,15 @@
+.card-image {
+  height: 200px;
+  width: 200px;
+}
+
+.card-stacked {
+  width: 300px;
+  height: 500px;
+  overflow: scroll;
+}
+
+img {
+  height: 250px;
+  width: 100px;
+}

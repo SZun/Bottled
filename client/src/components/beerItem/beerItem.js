@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col } from 'react-materialize';
 import { Button, Icon } from 'react-materialize';
+import './beerItem.css';
 
 const BeerItem = ({ image, description, name, onClick }) => (
   <Col s={3}>

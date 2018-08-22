@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BeerItem from '../components/BeerItem';
+import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
 import Sidebar from '../components/SideBar';
 import axios from 'axios';
