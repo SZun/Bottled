@@ -7,6 +7,8 @@ import { Row } from 'react-materialize';
 
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
+import Modal from '../components/Modal/Modal';
+import moment from 'moment';
 
 class SignUp extends Component {
   state = {
@@ -18,7 +20,10 @@ class SignUp extends Component {
     city: '',
     streetAddress: '',
     zipCode: '',
-    birthDate: '',
+    month: '',
+    day: '',
+    year: '',
+    show: false,
     errors: {}
   };
 
@@ -42,24 +47,50 @@ class SignUp extends Component {
       email,
       name,
       confirmPassword,
-      birthDate,
+      month,
+      day,
+      year,
       streetAddress,
       city,
       state,
       zipCode
     } = this.state;
-    const userData = {
-      email,
-      name,
-      confirmPassword,
-      password,
-      birthDate,
-      streetAddress,
-      city,
-      state,
-      zipCode
-    };
-    this.props.registerUser(userData, this.props.history);
+
+    const birthDate = `${month}-${day}-${year}`;
+
+    const birthDateVals = birthDate.split('/').join('-');
+    const age = moment().diff(birthDateVals, 'days');
+
+    if (age < 7671) {
+      this.setState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        state: '',
+        city: '',
+        streetAddress: '',
+        zipCode: '',
+        month: '',
+        date: '',
+        year: '',
+        show: true,
+        errors: {}
+      });
+    } else {
+      const userData = {
+        email,
+        name,
+        confirmPassword,
+        password,
+        birthDate,
+        streetAddress,
+        city,
+        state,
+        zipCode
+      };
+      this.props.registerUser(userData, this.props.history);
+    }
   };
 
   render() {
@@ -69,7 +100,9 @@ class SignUp extends Component {
       name,
       confirmPassword,
       errors,
-      birthDate,
+      month,
+      day,
+      year,
       streetAddress,
       city,
       state,
@@ -116,15 +149,6 @@ class SignUp extends Component {
         s: 12,
         value: confirmPassword,
         error: errors.confirmPassword ? errors.confirmPassword : null
-      },
-      {
-        placeholder: '03/01/1997',
-        label: 'Birth Date',
-        iconVal: 'today',
-        type: 'text',
-        name: 'birthDate',
-        s: 12,
-        value: birthDate
       }
     ];
 
@@ -143,9 +167,90 @@ class SignUp extends Component {
       />
     ));
 
+    const dateVals = [
+      {
+        placeholder: '12',
+        name: 'month',
+        label: 'Month',
+        type: 'text',
+        s: 4,
+        value: month,
+        iconVal: 'today'
+      },
+      {
+        placeholder: '31',
+        name: 'day',
+        label: 'Day',
+        type: 'text',
+        s: 4,
+        value: day,
+        iconVal: 'today'
+      },
+      {
+        placeholder: '1997',
+        name: 'year',
+        label: 'Year',
+        type: 'text',
+        s: 4,
+        value: year,
+        iconVal: 'today'
+      }
+    ];
+
+    const dateContent = dateVals.map(inpt => (
+      <Input
+        placeholder={inpt.placeholder}
+        s={inpt.s}
+        name={inpt.name}
+        value={inpt.value}
+        type={inpt.type}
+        iconVal={inpt.iconVal}
+        onChange={this.onChangeHandler}
+        label={inpt.label}
+        key={inpt.name}
+      />
+    ));
+
     return (
       <div className="container" style={{ marginTop: '5%' }}>
+        {this.state.show ? (
+          <Modal
+            show={this.state.show}
+            modalClosed={() =>
+              window.location.replace(
+                'https://pics.me.me/dontdodrugs-memes-comi-17629043.png'
+              )
+            }
+          >
+            <h3
+              style={{
+                textAlign: 'center'
+              }}
+            >
+              You're too young!
+            </h3>
+            <img
+              style={{
+                display: 'block',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '50%'
+              }}
+              src="https://i.ytimg.com/vi/8DfcJlmQBLU/maxresdefault.jpg"
+              alt="crying baby"
+            />
+            <h5
+              style={{
+                textAlign: 'center',
+                color: '#FF0000'
+              }}
+            >
+              Get out!!!
+            </h5>
+          </Modal>
+        ) : null}
         {inputContent}
+        <Row>{dateContent}</Row>
         <Row>
           <Input
             placeholder="1600 Pennsylvania Ave"
