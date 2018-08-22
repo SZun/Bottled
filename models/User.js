@@ -9,6 +9,10 @@ const userSchema = new Schema({
     minlength: 5,
     maxlength: 50
   },
+  dateofbirth: {
+    type: Date,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -21,8 +25,11 @@ const userSchema = new Schema({
     minlength: 5,
     maxlength: 1024
   },
-  preferences: {
-    type: String
+  address: {
+    state: String,
+    city: String,
+    street: String,
+    houseNumber: String
   }
 });
 
