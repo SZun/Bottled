@@ -20,7 +20,9 @@ class SignUp extends Component {
     city: '',
     streetAddress: '',
     zipCode: '',
-    birthDate: '',
+    month: '',
+    day: '',
+    year: '',
     show: false,
     errors: {}
   };
@@ -45,12 +47,16 @@ class SignUp extends Component {
       email,
       name,
       confirmPassword,
-      birthDate,
+      month,
+      day,
+      year,
       streetAddress,
       city,
       state,
       zipCode
     } = this.state;
+
+    const birthDate = `${month}-${day}-${year}`;
 
     const birthDateVals = birthDate.split('/').join('-');
     const age = moment().diff(birthDateVals, 'days');
@@ -65,7 +71,9 @@ class SignUp extends Component {
         city: '',
         streetAddress: '',
         zipCode: '',
-        birthDate: '',
+        month: '',
+        date: '',
+        year: '',
         show: true,
         errors: {}
       });
@@ -92,7 +100,9 @@ class SignUp extends Component {
       name,
       confirmPassword,
       errors,
-      birthDate,
+      month,
+      day,
+      year,
       streetAddress,
       city,
       state,
@@ -139,15 +149,6 @@ class SignUp extends Component {
         s: 12,
         value: confirmPassword,
         error: errors.confirmPassword ? errors.confirmPassword : null
-      },
-      {
-        placeholder: '03/01/1997',
-        label: 'Birth Date',
-        iconVal: 'today',
-        type: 'text',
-        name: 'birthDate',
-        s: 12,
-        value: birthDate
       }
     ];
 
@@ -163,6 +164,50 @@ class SignUp extends Component {
         label={inpt.label}
         key={inpt.name}
         error={inpt.error}
+      />
+    ));
+
+    const dateVals = [
+      {
+        placeholder: '12',
+        name: 'month',
+        label: 'Month',
+        type: 'text',
+        s: 4,
+        value: month,
+        iconVal: 'today'
+      },
+      {
+        placeholder: '31',
+        name: 'day',
+        label: 'Day',
+        type: 'text',
+        s: 4,
+        value: day,
+        iconVal: 'today'
+      },
+      {
+        placeholder: '1997',
+        name: 'year',
+        label: 'Year',
+        type: 'text',
+        s: 4,
+        value: year,
+        iconVal: 'today'
+      }
+    ];
+
+    const dateContent = dateVals.map(inpt => (
+      <Input
+        placeholder={inpt.placeholder}
+        s={inpt.s}
+        name={inpt.name}
+        value={inpt.value}
+        type={inpt.type}
+        iconVal={inpt.iconVal}
+        onChange={this.onChangeHandler}
+        label={inpt.label}
+        key={inpt.name}
       />
     ));
 
@@ -205,6 +250,7 @@ class SignUp extends Component {
           </Modal>
         ) : null}
         {inputContent}
+        <Row>{dateContent}</Row>
         <Row>
           <Input
             placeholder="1600 Pennsylvania Ave"
