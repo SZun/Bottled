@@ -22,8 +22,8 @@ const validateSignUp = user => {
       .min(8)
       .max(26),
     birthDate: Joi.string()
-      .min(8)
-      .max(8)
+      .min(10)
+      .max(10)
       .required(),
     state: Joi.string()
       .min(2)
@@ -37,10 +37,7 @@ const validateSignUp = user => {
       .min(6)
       .max(100)
       .required(),
-    zipCode: Joi.number()
-      .min(5)
-      .max(5)
-      .required()
+    zipCode: Joi.number().required()
   };
 
   return (
