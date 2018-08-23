@@ -32,7 +32,7 @@
       .min(2)
       .max(50)
       .required(),
-      country: Joi.String
+      country: Joi.String,
 
 
 
