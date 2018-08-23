@@ -26,7 +26,9 @@
       .required(),
       securityCode:Joi.String
       .min(3)
-      .max(3),
+      .max(3)
+      .required(),
+
 
     
 
