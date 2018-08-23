@@ -28,10 +28,12 @@
       .min(3)
       .max(3)
       .required(),
-      name: Joi.String
-      .min()
-      .max()
+      name: Joi.String()
+      .min(2)
+      .max(50)
       .required(),
+      country: Joi.String
+
 
 
     
