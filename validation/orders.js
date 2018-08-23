@@ -28,6 +28,10 @@
       .min(3)
       .max(3)
       .required(),
+      name: Joi.String
+      .min()
+      .max()
+      .required(),
 
 
     
