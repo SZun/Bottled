@@ -56,23 +56,20 @@
            errors[key] = 'example 11/19';
           break;
         case 'year':
-          errors[key] =
+          errors[key] = 'add the year the card expires'
            '';
          break;
         case 'securityCode':
           errors[key] = 'input the three digits on your card';
           break;
-        case '':
-          errors[key] = 'state field is invalid';
-       break;
        case 'name':
-         errors[key] = 'city field is invalid';
+         errors[key] = 'input the name of the card holder';
        break;
        case 'country':
-           errors[key] = 'INn';
+           errors[key] = 'add the country of the card holder';
           break;
         case 'zipCode':
-          errors[key] = 'zip code is invalid';
+          errors[key] = 'add correct zip code 5 - 9';
           break;
         default:
           return;
