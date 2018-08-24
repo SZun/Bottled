@@ -14,8 +14,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const errors = {};
-         const {error} = validateCheckOut(req.body);
+         
         const { name, description, imageUrl } = req.body.beer;
         const _user = req.user._id;
         let order = await new Order({
@@ -71,10 +70,46 @@ router.get(
 // @access Private
 
 router.put(
-  '/',
+  '/checkout',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
+      const errors = {};
+
+      const {error} = validateCheckOut(req.body)
+         if (error) {
+          error.details.map(err => {
+            const errorVal = err.message.replace(/"/g, '');
+           const key = errorVal.split(' ')[0];
+              switch (key) {
+                case 'creditCard':
+                errors[key] = 'Input the 16 digits on your card';
+               break;
+               case 'month':
+                 errors[key] = 'example 11/19';
+                break;
+              case 'year':
+                errors[key] = 'add the year the card expires';
+               break;
+              case 'securityCode':
+                errors[key] = 'input the three digits on your card';
+                break;
+             case 'name':
+               errors[key] = 'input the name of the card holder';
+             break;
+             case 'country':
+                 errors[key] = 'add the country of the card holder';
+                break;
+              case 'zipCode':
+                errors[key] = 'add correct zip code 5 - 9';
+                break;
+              default:
+                return;
+              }
+           })
+           return res.status(400).json(errors)
+         };
+
       const order = await Order.updateMany(
         { _user: req.user._id },
         { purchased: true },

@@ -44,37 +44,6 @@
    return Joi.validate(validInfo, schema, {abortEarly:false});
  }
 
- if (error) {
-     error.details.map(err => {
-       const errorVal = err.message.replace(/"/g, '');
-      const key = errorVal.split(' ')[0];
-         switch (key) {
-         case 'creditCard':
-          errors[key] = 'Input the 16 digits on your card';
-         break;
-         case 'month':
-           errors[key] = 'example 11/19';
-          break;
-        case 'year':
-          errors[key] = 'add the year the card expires';
-         break;
-        case 'securityCode':
-          errors[key] = 'input the three digits on your card';
-          break;
-       case 'name':
-         errors[key] = 'input the name of the card holder';
-       break;
-       case 'country':
-           errors[key] = 'add the country of the card holder';
-          break;
-        case 'zipCode':
-          errors[key] = 'add correct zip code 5 - 9';
-          break;
-        default:
-          return;
-      }
-    });
-
 
 
 export default validateCheckOut;
