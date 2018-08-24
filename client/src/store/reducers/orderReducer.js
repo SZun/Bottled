@@ -1,6 +1,6 @@
 import {
   FETCH_NOT_PURCHASED,
-  FETCH_ALL_ORDERS,
+  FETCH_PURCHASED,
   LOADING,
   CREATE_ORDER,
   DELETE_ORDER
@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   loading: false,
-  allOrders: [],
+  purchased: {},
   notPurchased: {}
 };
 
@@ -19,10 +19,10 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
-    case FETCH_ALL_ORDERS:
+    case FETCH_PURCHASED:
       return {
         ...state,
-        allOrders: action.payload,
+        purchased: action.payload,
         loading: false
       };
     case FETCH_NOT_PURCHASED:
