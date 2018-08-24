@@ -7,5 +7,4 @@ require('babel-register')({
     'classnames'
   ]
 });
-
 module.exports = require('./server.js');
