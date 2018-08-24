@@ -11,8 +11,8 @@ const validateCheckOut = validInfo => {
       .max(2)
       .required(),
     year: Joi.string()
-      .min(4)
-      .max(4)
+      .min(2)
+      .max(2)
       .required(),
     securityCode: Joi.string()
       .min(3)
