@@ -15,7 +15,7 @@ import passportMiddleware from './services/passport';
 
 // Importing Routes
 import userRoutes from './routes/users';
-import beerRoutes from './routes/beers';
+import orderRoutes from './routes/orders';
 
 // Middlewares
 mongooseConnection(mongoose);
@@ -25,7 +25,7 @@ passportMiddleware(passport);
 
 // Routes
 app.use('/api/users', userRoutes);
-app.use('/api/beers', beerRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

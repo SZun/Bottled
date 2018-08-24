@@ -28,7 +28,7 @@ const orderSchema = new Schema({
       default: 4.99
     }
   },
-  user: {
+  _user: {
     type: Schema.Types.ObjectId,
     required: true
   },
@@ -40,11 +40,10 @@ const orderSchema = new Schema({
   quantity: {
     type: Number,
     required: true,
-    maxlength: 10
+    default: 1
   },
   shippingStatus: {
-    type: String,
-    trim: true,
+    type: Boolean,
     default: false
   },
   purchased: {
@@ -53,6 +52,6 @@ const orderSchema = new Schema({
   }
 });
 
-const Order = mongoose.model('order', orderSchema);
+const Order = mongoose.model("order", orderSchema);
 
 export default Order;
