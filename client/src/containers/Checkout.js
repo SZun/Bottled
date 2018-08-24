@@ -76,7 +76,8 @@ class Checkout extends Component {
       securityCode,
       name,
       country,
-      zipCode
+      zipCode,
+      errors
     } = this.state;
     const dateVals = [
       {
@@ -86,7 +87,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: month,
-        iconVal: 'perm_contact_calendar'
+        iconVal: 'perm_contact_calendar',
+        error: errors.month ? errors.month : null
       },
       {
         placeholder: '20',
@@ -95,7 +97,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: year,
-        iconVal: 'perm_contact_calendar'
+        iconVal: 'perm_contact_calendar',
+        error: errors.year ? errors.year : null
       },
       {
         placeholder: '123',
@@ -104,7 +107,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: securityCode,
-        iconVal: 'lock_outline'
+        iconVal: 'lock_outline',
+        error: errors.securityCode ? errors.securityCode : null
       }
     ];
 
@@ -119,6 +123,7 @@ class Checkout extends Component {
         onChange={this.onChangeHandler}
         label={inpt.label}
         key={inpt.name}
+        error={inpt.error}
       />
     ));
 
@@ -146,6 +151,7 @@ class Checkout extends Component {
           onChange={this.onChangeHandler}
           s={12}
           value={creditCard}
+          error={errors.creditCard ? errors.creditCard : null}
         />
         <Row>{dateContent}</Row>
         <Input
@@ -157,6 +163,7 @@ class Checkout extends Component {
           s={12}
           iconVal="account_circle"
           value={name}
+          error={errors.name ? errors.name : null}
         />
         <Row>
           <Input
@@ -168,6 +175,7 @@ class Checkout extends Component {
             type="text"
             s={8}
             value={country}
+            error={errors.country ? errors.country : null}
           />
           <Input
             placeholder="60035"
@@ -178,6 +186,7 @@ class Checkout extends Component {
             type="text"
             s={4}
             value={zipCode}
+            error={errors.zipCode ? errors.zipCode : null}
           />
         </Row>
         <Button iconName="check" onClick={this.onSubmitHandler} right large>
@@ -193,11 +202,13 @@ Checkout.propTypes = {
   order: PropTypes.object.isRequired,
   fetchNotPurchased: PropTypes.func.isRequired,
   deleteOrder: PropTypes.func.isRequired,
-  purchaseOrders: PropTypes.func.isRequired
+  purchaseOrders: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  order: state.order
+  order: state.order,
+  errors: state.errors
 });
 
 export default connect(
