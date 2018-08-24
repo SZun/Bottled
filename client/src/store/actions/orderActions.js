@@ -1,21 +1,20 @@
 import {
-  FETCH_ORDER,
-  FETCH_ORDERS,
-  CLEAR_ERRORS,
+  FETCH_NOT_PURCHASED,
+  FETCH_PURCHASED,
   GET_ERRORS,
   CREATE_ORDER,
-  LOADING
-} from './types';
+  DELETE_ORDER,
+  PURCHASE_ORDER,
+  CLEAR_ERRORS
+} from '../actions/types';
 import axios from '../../axios/orderRoutes';
 
-// Get Current Order
-export const fetchOrder = id => async dispatch => {
+// Create an Order
+export const createOrder = beer => async dispatch => {
   try {
-    dispatch(loading());
-    const orders = await axios.get(`/${id}`);
+    await axios.post('/', beer);
     dispatch({
-      type: FETCH_ORDER,
-      payload: orders.data
+      type: CREATE_ORDER
     });
   } catch (err) {
     dispatch({
@@ -25,14 +24,12 @@ export const fetchOrder = id => async dispatch => {
   }
 };
 
-// Get all orders
-export const fetchOrders = (user_id, id) => async dispatch => {
+// Delete Order
+export const deleteOrder = id => async dispatch => {
   try {
-    dispatch(loading());
-    const orders = await axios.get(`/${user_id}/${id}`);
+    await axios.delete(`/${id}`);
     dispatch({
-      type: FETCH_ORDERS,
-      payload: orders.data
+      type: DELETE_ORDER
     });
   } catch (err) {
     dispatch({
@@ -42,17 +39,48 @@ export const fetchOrders = (user_id, id) => async dispatch => {
   }
 };
 
-export const createOrder = id => async dispatch => {
+// Fetch Purchased Orders
+export const fetchPurchased = () => async dispatch => {
+  try {
+    const res = await axios.get('/purchased');
+    dispatch({
+      type: FETCH_PURCHASED,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+// Fetch unpurchased
+export const fetchNotPurchased = () => async dispatch => {
+  try {
+    const res = await axios.get('/notpurchased');
+    dispatch({
+      type: FETCH_NOT_PURCHASED,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+// Purchase Orders
+export const purchaseOrders = card => async dispatch => {
   try {
     dispatch({
       type: CLEAR_ERRORS
     });
-    const orders = await axios.post('/');
+    await axios.put('/checkout', card);
     dispatch({
-      type: CREATE_ORDER,
-      payload: orders.data
+      type: PURCHASE_ORDER
     });
-    dispatch(fetchOrders());
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -60,8 +88,3 @@ export const createOrder = id => async dispatch => {
     });
   }
 };
-
-const loading = dispatch =>
-  dispatch({
-    type: LOADING
-  });

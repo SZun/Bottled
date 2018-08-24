@@ -14,13 +14,15 @@ const TextInput = ({
   iconVal
 }) => (
   <div>
-    <p
+    <div
       style={{
-        color: '#FF0000'
+        color: '#FF0000',
+        margin: 0,
+        padding: 0
       }}
     >
       {error}
-    </p>
+    </div>
     <Input
       placeholder={placeholder}
       label={label}

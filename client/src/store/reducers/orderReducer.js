@@ -1,14 +1,17 @@
 import {
-  FETCH_ORDER,
+  FETCH_NOT_PURCHASED,
+  FETCH_PURCHASED,
+  LOADING,
   CREATE_ORDER,
-  FETCH_ORDERS,
-  LOADING
+  DELETE_ORDER,
+  PURCHASE_ORDER
 } from '../actions/types';
 
 const initialState = {
   loading: false,
-  currentOrders: {},
-  currentOrder: {}
+  purchased: {},
+  notPurchased: {},
+  purchasing: false
 };
 
 export default function(state = initialState, action) {
@@ -18,23 +21,30 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
-    case FETCH_ORDER:
+    case PURCHASE_ORDER:
       return {
         ...state,
-        currentOrders: action.payload,
+        purchasing: true
+      };
+    case FETCH_PURCHASED:
+      return {
+        ...state,
+        purchased: action.payload,
         loading: false
       };
-    case FETCH_ORDERS:
+    case FETCH_NOT_PURCHASED:
       return {
         ...state,
-        currentOrders: action.payload,
-        loading: false
+        notPurchased: action.payload,
+        loading: true
       };
     case CREATE_ORDER:
       return {
-        ...state,
-        currentOrder: action.payload,
-        loading: false
+        ...state
+      };
+    case DELETE_ORDER:
+      return {
+        ...state
       };
     default:
       return state;

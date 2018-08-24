@@ -8,7 +8,6 @@ import { Row } from 'react-materialize';
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import Modal from '../components/Modal/Modal';
-import moment from 'moment';
 
 class SignUp extends Component {
   state = {
@@ -58,39 +57,19 @@ class SignUp extends Component {
 
     const birthDate = `${month}-${day}-${year}`;
 
-    const birthDateVals = birthDate.split('/').join('-');
-    const age = moment().diff(birthDateVals, 'days');
+    const userData = {
+      email,
+      name,
+      confirmPassword,
+      password,
+      birthDate,
+      streetAddress,
+      city,
+      state,
+      zipCode
+    };
 
-    if (age < 7671) {
-      this.setState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        state: '',
-        city: '',
-        streetAddress: '',
-        zipCode: '',
-        month: '',
-        date: '',
-        year: '',
-        show: true,
-        errors: {}
-      });
-    } else {
-      const userData = {
-        email,
-        name,
-        confirmPassword,
-        password,
-        birthDate,
-        streetAddress,
-        city,
-        state,
-        zipCode
-      };
-      this.props.registerUser(userData, this.props.history);
-    }
+    this.props.registerUser(userData, this.props.history);
   };
 
   render() {
@@ -213,12 +192,12 @@ class SignUp extends Component {
 
     return (
       <div className="container" style={{ marginTop: '5%' }}>
-        {this.state.show ? (
+        {errors.birthDate ? (
           <Modal
-            show={this.state.show}
+            show
             modalClosed={() =>
               window.location.replace(
-                'https://pics.me.me/dontdodrugs-memes-comi-17629043.png'
+                'https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Old_Trix_Box.jpg/250px-Old_Trix_Box.jpg'
               )
             }
           >
@@ -227,7 +206,7 @@ class SignUp extends Component {
                 textAlign: 'center'
               }}
             >
-              You're too young!
+              Looks like you're too young!
             </h3>
             <img
               style={{
@@ -245,7 +224,7 @@ class SignUp extends Component {
                 color: '#FF0000'
               }}
             >
-              Get out!!!
+              Bye!
             </h5>
           </Modal>
         ) : null}

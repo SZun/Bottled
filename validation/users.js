@@ -37,7 +37,11 @@ const validateSignUp = user => {
       .min(6)
       .max(100)
       .required(),
-    zipCode: Joi.number().required()
+    zipCode: Joi.number().required(),
+    birthDate: Joi.string()
+      .min(10)
+      .max(10)
+      .required()
   };
 
   return (

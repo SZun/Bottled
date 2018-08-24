@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import keys from '../config/keys';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import moment from 'moment';
 
 const router = express.Router();
 
@@ -17,6 +18,25 @@ import { validateLogin, validateSignUp } from '../validation/users';
 router.post('/signup', async (req, res) => {
   // Instantiate Errors Object
   const errors = {};
+  const {
+    name,
+    email,
+    password,
+    confirmPassword,
+    birthDate,
+    state,
+    city,
+    streetAddress,
+    zipCode
+  } = req.body;
+
+  const age = moment().diff(birthDate, 'days');
+
+  if (age < 7671) {
+    errors.birthDate = 'Not Eligible';
+    return res.status(401).json(errors);
+  }
+
   // Validate user input and set errors
   const { error } = validateSignUp(req.body);
   if (error) {
@@ -55,18 +75,6 @@ router.post('/signup', async (req, res) => {
     });
     return res.status(400).json(errors);
   }
-
-  const {
-    name,
-    email,
-    password,
-    confirmPassword,
-    birthDate,
-    state,
-    city,
-    streetAddress,
-    zipCode
-  } = req.body;
 
   let user = await User.findOne({ email });
   if (user) {
@@ -166,9 +174,9 @@ router.post('/login', async (req, res) => {
 router.get(
   '/me',
   passport.authenticate('jwt', { session: false }),
-  async (req, res, next) => {
+  async (req, res) => {
     try {
-      const user = await User.findById(req.user._id).select('name email');
+      const user = await User.findById(req.user._id).select('-password');
       res.send(user);
     } catch (err) {
       res.status(401).send('Bad Request');

@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import {
+  fetchNotPurchased,
+  deleteOrder,
+  purchaseOrders
+} from '../store/actions/orderActions';
+import { getUserData } from '../store/actions/authActions';
+
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import { Row } from 'react-materialize';
+import CheckoutCard from '../components/CheckoutCard';
+import Modal from '../components/Modal/Modal';
+import moment from 'moment';
 
 class Checkout extends Component {
   state = {
@@ -13,12 +24,57 @@ class Checkout extends Component {
     securityCode: '',
     name: '',
     country: '',
-    zipCode: ''
+    zipCode: '',
+    errors: {},
+    show: false
+  };
+
+  onSubmitHandler = () => {
+    const {
+      creditCard,
+      month,
+      year,
+      securityCode,
+      name,
+      country,
+      zipCode
+    } = this.state;
+    const data = {
+      creditCard,
+      month,
+      year,
+      securityCode,
+      name,
+      country,
+      zipCode
+    };
+
+    this.props.purchaseOrders(data);
+    this.setState({
+      show: true
+    });
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  componentDidMount = () => {
+    this.props.fetchNotPurchased();
+    this.props.getUserData();
+  };
+
+  onDeleteHandler = id => {
+    this.props.deleteOrder(id);
+    this.props.fetchNotPurchased();
   };
 
   onChangeHandler = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      show: false
     });
   };
 
@@ -30,7 +86,9 @@ class Checkout extends Component {
       securityCode,
       name,
       country,
-      zipCode
+      zipCode,
+      errors,
+      show
     } = this.state;
     const dateVals = [
       {
@@ -40,7 +98,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: month,
-        iconVal: 'perm_contact_calendar'
+        iconVal: 'perm_contact_calendar',
+        error: errors.month ? errors.month : null
       },
       {
         placeholder: '20',
@@ -49,7 +108,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: year,
-        iconVal: 'perm_contact_calendar'
+        iconVal: 'perm_contact_calendar',
+        error: errors.year ? errors.year : null
       },
       {
         placeholder: '123',
@@ -58,7 +118,8 @@ class Checkout extends Component {
         type: 'text',
         s: 3,
         value: securityCode,
-        iconVal: 'lock_outline'
+        iconVal: 'lock_outline',
+        error: errors.securityCode ? errors.securityCode : null
       }
     ];
 
@@ -73,11 +134,85 @@ class Checkout extends Component {
         onChange={this.onChangeHandler}
         label={inpt.label}
         key={inpt.name}
+        error={inpt.error}
       />
     ));
 
+    let cards;
+    let price;
+
+    if (this.props.order.notPurchased.length > 0) {
+      price = (
+        <h5
+          style={{
+            textAlign: 'center'
+          }}
+        >
+          Your Estimated Price Is:{' '}
+          <span
+            style={{
+              color: '#228b22'
+            }}
+          >
+            $
+            {parseInt(this.props.order.notPurchased.length * 4.99, 0).toFixed(
+              2
+            )}
+          </span>
+        </h5>
+      );
+      cards = this.props.order.notPurchased.map(order => (
+        <CheckoutCard
+          name={order.name}
+          description={order.description}
+          onClick={() => this.onDeleteHandler(order._id)}
+          key={order._id}
+          isCheckout
+        />
+      ));
+    }
+
+    let modal;
+
+    if (this.props.order.purchasing) {
+      const {
+        streetAddress,
+        city,
+        state,
+        zipCode,
+        name
+      } = this.props.user.userData;
+      modal = (
+        <Modal
+          show={show}
+          modalClosed={() => this.props.history.push('/orders')}
+        >
+          <div
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <h1>Hey {name}!</h1>
+            <h4>Thanks for shopping with Bottled!</h4>
+            <p>
+              Your order with be shipped to{' '}
+              <strong>
+                {`${streetAddress}, ${city}, ${state}, ${zipCode}`} by{' '}
+                {moment()
+                  .add(7, 'days')
+                  .format('MM-DD-YYYY')}
+              </strong>
+            </p>
+            <h1>Enjoy!</h1>
+          </div>
+        </Modal>
+      );
+    }
+
     return (
       <div className="container" style={{ marginTop: '5%' }}>
+        {modal}
+        {price}
         <Input
           placeholder="4242 4242 4242 4242"
           name="creditCard"
@@ -87,6 +222,7 @@ class Checkout extends Component {
           onChange={this.onChangeHandler}
           s={12}
           value={creditCard}
+          error={errors.creditCard ? errors.creditCard : null}
         />
         <Row>{dateContent}</Row>
         <Input
@@ -98,6 +234,7 @@ class Checkout extends Component {
           s={12}
           iconVal="account_circle"
           value={name}
+          error={errors.name ? errors.name : null}
         />
         <Row>
           <Input
@@ -109,6 +246,7 @@ class Checkout extends Component {
             type="text"
             s={8}
             value={country}
+            error={errors.country ? errors.country : null}
           />
           <Input
             placeholder="60035"
@@ -119,23 +257,34 @@ class Checkout extends Component {
             type="text"
             s={4}
             value={zipCode}
+            error={errors.zipCode ? errors.zipCode : null}
           />
         </Row>
-        <Button iconName="check" right large>
+        <Button iconName="check" onClick={this.onSubmitHandler} right large>
           Submit
         </Button>
-        <h1>Add staging orders here</h1>
+        {cards}
       </div>
     );
   }
 }
 
 Checkout.propTypes = {
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
+  fetchNotPurchased: PropTypes.func.isRequired,
+  deleteOrder: PropTypes.func.isRequired,
+  purchaseOrders: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  getUserData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  order: state.order
+  order: state.order,
+  errors: state.errors,
+  user: state.user
 });
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(
+  mapStateToProps,
+  { fetchNotPurchased, deleteOrder, purchaseOrders, getUserData }
+)(withRouter(Checkout));

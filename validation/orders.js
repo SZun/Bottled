@@ -1,49 +1,37 @@
- import Joi from "joi";
+import Joi from 'joi';
 
-//properties
- //    creditCard
- //   month
- //   year
- //   securityCode
- //   name
-  //  country
-  //  zipCode
-
-   const validateCheckOut = validInfo => {
-     const schema = {
-      property: Joi.string().min().max().required(),
-      creditCard : Joi.string()
+const validateCheckOut = validInfo => {
+  const schema = {
+    creditCard: Joi.string()
       .min(16)
       .max(16)
       .required(),
-      month:Joi.string()
+    month: Joi.string()
       .min(2)
       .max(2)
       .required(),
-      year: Joi.string()
-      .min(4)
-      .max(4)
+    year: Joi.string()
+      .min(2)
+      .max(2)
       .required(),
-      securityCode:Joi.String
+    securityCode: Joi.string()
       .min(3)
       .max(3)
       .required(),
-      name: Joi.String()
+    name: Joi.string()
       .min(2)
       .max(50)
       .required(),
-      country: Joi.String()
+    country: Joi.string()
       .min(2)
       .max(50)
       .required(),
-      zipCode:Joi.String()
+    zipCode: Joi.string()
       .min(5)
       .max(9)
       .required()
   };
-   return Joi.validate(validInfo, schema, {abortEarly:false});
- }
-
-
+  return Joi.validate(validInfo, schema, { abortEarly: false });
+};
 
 export default validateCheckOut;

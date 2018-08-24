@@ -27,6 +27,16 @@ const BeerItem = ({ image, description, name, onClick }) => (
           <Button onClick={onClick} className="z-depth-3 light-blue accent-2">
             <Icon>add</Icon>
           </Button>
+          <p>
+            <strong
+              style={{
+                color: '#FF0000'
+              }}
+            >
+              <i>SALE: </i>
+            </strong>
+            $4.99
+          </p>
         </div>
       </div>
     </div>

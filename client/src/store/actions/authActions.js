@@ -2,7 +2,12 @@ import setAuthToken from '../../axios/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import axios from '../../axios/userRoutes';
 
-import { GET_ERRORS, SET_CURRENT_USER, CLEAR_ERRORS } from './types';
+import {
+  GET_ERRORS,
+  SET_CURRENT_USER,
+  CLEAR_ERRORS,
+  GET_USER_DATA
+} from './types';
 
 // SignUp User
 export const registerUser = (userData, history) => async dispatch => {
@@ -36,6 +41,22 @@ export const loginUser = (userData, history) => async dispatch => {
     dispatch(setCurrentUser(decoded));
     // Redirect user to to the Homepage
     history.push('/shop');
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+// Get user Info
+export const getUserData = () => async dispatch => {
+  try {
+    const res = await axios.get('/me');
+    dispatch({
+      type: GET_USER_DATA,
+      payload: res.data
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
