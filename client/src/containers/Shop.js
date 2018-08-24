@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
+import { connect } from 'react-redux';
+import { createOrder } from '../store/actions/orderActions';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
+import PropTypes from 'prop-types';
 
 class Shop extends Component {
   state = {
@@ -20,7 +23,14 @@ class Shop extends Component {
 
   addToCart = i => {
     const { allBeers } = this.state;
-    console.log(allBeers[i]);
+    const { name, description, image_url } = allBeers[i];
+    const beer = {
+      name,
+      description,
+      image_url
+    };
+    // console.log(beer);
+    this.props.createOrder(beer);
   };
 
   render() {
@@ -43,4 +53,11 @@ class Shop extends Component {
   }
 }
 
-export default Shop;
+Shop.propTypes = {
+  createOrder: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { createOrder }
+)(Shop);

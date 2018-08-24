@@ -1,23 +1,31 @@
 import React from 'react';
-import { Col, Card, CardTitle, Button, Icon } from 'react-materialize';
+import { Col, Button, Icon } from 'react-materialize';
 
-const CheckoutCard = ({ s, title, description, onClick, right, left }) => (
+const CheckoutCard = ({
+  s,
+  name,
+  description,
+  onClick,
+  right,
+  left,
+  isCheckout
+}) => (
   <Col s={s}>
-    <Card>
-      <div class="card-content white-text">
-        <CardTitle>{title}</CardTitle>
-        <p>{description} </p>
+    <div className="card">
+      <div className="card-content">
+        <span className="card-title">{name}</span>
+        <p>{description}</p>
       </div>
-
-      <div class="card-action" />
-      {window.location.href === '/checkout' ? (
-        <Button className="red" onClick={onClick}>
-          <Icon right={right} left={left}>
-            delete_forever
-          </Icon>
-        </Button>
-      ) : null}
-    </Card>
+      <div className="card-action">
+        {isCheckout ? (
+          <Button className="red" onClick={onClick}>
+            <Icon right={right} left={left}>
+              delete_forever
+            </Icon>
+          </Button>
+        ) : null}
+      </div>
+    </div>
   </Col>
 );
 

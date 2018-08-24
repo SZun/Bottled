@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import { Row } from 'react-materialize';
+import CheckoutCard from '../components/CheckoutCard';
+import { fetchNotPurchased } from '../store/actions/orderActions';
 
 class Checkout extends Component {
   state = {
@@ -14,6 +16,10 @@ class Checkout extends Component {
     name: '',
     country: '',
     zipCode: ''
+  };
+
+  componentDidMount = () => {
+    this.props.fetchNotPurchased();
   };
 
   onChangeHandler = e => {
@@ -76,6 +82,20 @@ class Checkout extends Component {
       />
     ));
 
+    let cards;
+
+    if (this.props.order.notPurchased.length > 0) {
+      console.log(window.location.href);
+      cards = this.props.order.notPurchased.map(order => (
+        <CheckoutCard
+          name={order.name}
+          description={order.description}
+          onClick={() => console.log('banan')}
+          key={order._id}
+          isCheckout
+        />
+      ));
+    }
     return (
       <div className="container" style={{ marginTop: '5%' }}>
         <Input
@@ -124,18 +144,22 @@ class Checkout extends Component {
         <Button iconName="check" right large>
           Submit
         </Button>
-        <h1>Add staging orders here</h1>
+        {cards}
       </div>
     );
   }
 }
 
 Checkout.propTypes = {
-  order: PropTypes.object.isRequired
+  order: PropTypes.object.isRequired,
+  fetchNotPurchased: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   order: state.order
 });
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(
+  mapStateToProps,
+  { fetchNotPurchased }
+)(Checkout);
