@@ -5,7 +5,12 @@ import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import { Row } from 'react-materialize';
 import CheckoutCard from '../components/CheckoutCard';
-import { fetchNotPurchased, deleteOrder } from '../store/actions/orderActions';
+import { withRouter } from 'react-router-dom';
+import {
+  fetchNotPurchased,
+  deleteOrder,
+  purchaseOrders
+} from '../store/actions/orderActions';
 
 class Checkout extends Component {
   state = {
@@ -16,17 +21,43 @@ class Checkout extends Component {
     name: '',
     country: '',
     zipCode: '',
-    deletion: false
+    errors: {}
   };
+
+  onSubmitHandler = () => {
+    const {
+      creditCard,
+      month,
+      year,
+      securityCode,
+      name,
+      country,
+      zipCode
+    } = this.state;
+    const data = {
+      creditCard,
+      month,
+      year,
+      securityCode,
+      name,
+      country,
+      zipCode
+    };
+
+    this.props.purchaseOrders(data, this.props.history);
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   componentDidMount = () => {
     this.props.fetchNotPurchased();
   };
 
   onDeleteHandler = id => {
-    this.setState({
-      deletion: !this.state.deletion
-    });
     this.props.deleteOrder(id);
     this.props.fetchNotPurchased();
   };
@@ -149,7 +180,7 @@ class Checkout extends Component {
             value={zipCode}
           />
         </Row>
-        <Button iconName="check" right large>
+        <Button iconName="check" onClick={this.onSubmitHandler} right large>
           Submit
         </Button>
         {cards}
@@ -161,7 +192,8 @@ class Checkout extends Component {
 Checkout.propTypes = {
   order: PropTypes.object.isRequired,
   fetchNotPurchased: PropTypes.func.isRequired,
-  deleteOrder: PropTypes.func.isRequired
+  deleteOrder: PropTypes.func.isRequired,
+  purchaseOrders: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -170,5 +202,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchNotPurchased, deleteOrder }
-)(Checkout);
+  { fetchNotPurchased, deleteOrder, purchaseOrders }
+)(withRouter(Checkout));

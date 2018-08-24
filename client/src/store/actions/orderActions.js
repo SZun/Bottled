@@ -4,7 +4,8 @@ import {
   GET_ERRORS,
   LOADING,
   CREATE_ORDER,
-  DELETE_ORDER
+  DELETE_ORDER,
+  PURCHASE_ORDER
 } from '../actions/types';
 import axios from '../../axios/orderRoutes';
 
@@ -62,6 +63,22 @@ export const fetchNotPurchased = () => async dispatch => {
       type: FETCH_NOT_PURCHASED,
       payload: res.data
     });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+// Purchase Orders
+export const purchaseOrders = (card, history) => async dispatch => {
+  try {
+    await axios.put('/checkout', card);
+    dispatch({
+      type: PURCHASE_ORDER
+    });
+    history.push('/orders');
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
