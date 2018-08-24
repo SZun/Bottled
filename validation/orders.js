@@ -36,11 +36,10 @@
       .min(2)
       .max(50)
       .required(),
-
-
-
-    
-
+      zipCode:Joi.String()
+      .min(5)
+      .max(9)
+      .required()
   };
    return Joi.validate(validInfo, schema, {abortEarly:false});
  }
