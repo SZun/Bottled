@@ -59,7 +59,7 @@
           errors[key] =
            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
          break;
-        case 'confirmPassword':
+        case 'sercuityCode':
           errors[key] = 'passwords must match';
           break;
         case 'state':
