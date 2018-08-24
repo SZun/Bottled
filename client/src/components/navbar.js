@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem } from 'react-materialize';
-import Button from './Button';
+import { Navbar, NavItem, Button, Icon } from 'react-materialize';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
@@ -85,11 +84,24 @@ class NavbarReact extends Component {
             </NavBarItem>
           ))}
           <NavItem onClick={() => this.props.history.push('/checkout')}>
-            <Button large iconName="shopping_cart" />
+            <div>
+              <Button
+                className={
+                  this.props.order.notPurchased.length > 0
+                    ? 'red accent-3'
+                    : 'z-depth-3 light-blue accent-2'
+                }
+                waves="light"
+                large
+              >
+                <Icon>shopping_cart</Icon>
+              </Button>
+            </div>
           </NavItem>
         </div>
       );
     }
+    console.log(this.props.order.notPurchased.length);
     return (
       <div className="navbar-fixed">
         <Navbar
@@ -107,11 +119,13 @@ class NavbarReact extends Component {
 
 NavbarReact.propTypes = {
   auth: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired,
+  order: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  order: state.order
 });
 
 export default connect(

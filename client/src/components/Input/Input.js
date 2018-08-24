@@ -16,7 +16,9 @@ const TextInput = ({
   <div>
     <p
       style={{
-        color: '#FF0000'
+        color: '#FF0000',
+        margin: 0,
+        padding: 0
       }}
     >
       {error}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
 import { connect } from 'react-redux';
-import { createOrder } from '../store/actions/orderActions';
+import { createOrder, fetchNotPurchased } from '../store/actions/orderActions';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import PropTypes from 'prop-types';
@@ -19,6 +19,7 @@ class Shop extends Component {
     this.setState({
       allBeers: beers.data
     });
+    this.props.fetchNotPurchased();
   };
 
   addToCart = i => {
@@ -29,8 +30,8 @@ class Shop extends Component {
       description,
       image_url
     };
-    // console.log(beer);
     this.props.createOrder(beer);
+    this.props.fetchNotPurchased();
   };
 
   render() {
@@ -59,5 +60,5 @@ Shop.propTypes = {
 
 export default connect(
   null,
-  { createOrder }
+  { createOrder, fetchNotPurchased }
 )(Shop);
