@@ -55,7 +55,7 @@
          case 'month':
            errors[key] = 'email is invalid';
           break;
-        case 'password':
+        case 'year':
           errors[key] =
            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
          break;
