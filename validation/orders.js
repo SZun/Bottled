@@ -68,7 +68,7 @@
        case 'name':
          errors[key] = 'city field is invalid';
        break;
-       case 'streetAddress':
+       case 'country':
            errors[key] = 'street address field is invalid';
           break;
         case 'zipCode':
