@@ -52,7 +52,7 @@
          case 'creditCard':
           errors[key] = 'name must be between 5-50 characters';
          break;
-         case 'email':
+         case 'month':
            errors[key] = 'email is invalid';
           break;
         case 'password':
