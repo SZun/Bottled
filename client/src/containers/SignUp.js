@@ -218,7 +218,7 @@ class SignUp extends Component {
             show={this.state.show}
             modalClosed={() =>
               window.location.replace(
-                'https://pics.me.me/dontdodrugs-memes-comi-17629043.png'
+                'https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Old_Trix_Box.jpg/250px-Old_Trix_Box.jpg'
               )
             }
           >

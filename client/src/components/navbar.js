@@ -101,7 +101,6 @@ class NavbarReact extends Component {
         </div>
       );
     }
-    console.log(this.props.order.notPurchased.length);
     return (
       <div className="navbar-fixed">
         <Navbar

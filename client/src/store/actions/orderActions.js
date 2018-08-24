@@ -1,6 +1,6 @@
 import {
   FETCH_NOT_PURCHASED,
-  FETCH_PURCHASED,
+  FETCH_ALL_ORDERS,
   GET_ERRORS,
   LOADING,
   CREATE_ORDER,
@@ -39,13 +39,14 @@ export const deleteOrder = id => async dispatch => {
   }
 };
 
-// Fetch Purchased Order
-export const fetchPurchased = () => async dispatch => {
+// Fetch All Orders
+export const fetchAllOrders = () => async dispatch => {
   try {
-    const res = await axios.get('/purchased');
+    const purchased = await axios.get('/purchased');
+    const notPurchased = await axios.get('/notpurchased');
     dispatch({
-      type: FETCH_PURCHASED,
-      payload: res.data
+      type: FETCH_ALL_ORDERS,
+      payload: [purchased, notPurchased]
     });
   } catch (err) {
     dispatch({
@@ -86,20 +87,3 @@ export const purchaseOrders = (card, history) => async dispatch => {
     });
   }
 };
-
-// Fetch all orders
-export const fetchOrders = dispatch => {
-  dispatch(loading());
-  dispatch(fetchPurchased());
-  dispatch(fetchNotPurchased());
-};
-
-// const clearErrors = dispatch =>
-//   dispatch({
-//     type: CLEAR_ERRORS
-//   });
-
-const loading = dispatch =>
-  dispatch({
-    type: LOADING
-  });

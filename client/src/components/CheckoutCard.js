@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Button, Icon } from 'react-materialize';
+import { Col, Button, Icon, Row } from 'react-materialize';
 
 const CheckoutCard = ({
   s,
@@ -18,11 +18,26 @@ const CheckoutCard = ({
       </div>
       <div className="card-action">
         {isCheckout ? (
-          <Button className="red" onClick={onClick}>
-            <Icon right={right} left={left}>
-              delete_forever
-            </Icon>
-          </Button>
+          <Row>
+            <Col s={3}>
+              <Button className="red" onClick={onClick}>
+                <Icon right={right} left={left}>
+                  delete_forever
+                </Icon>
+              </Button>
+            </Col>
+            <Col s={3}>
+              <strong>Price: </strong>
+              $4.99
+            </Col>
+            <Col s={3}>
+              <strong>Quantity: </strong>1
+            </Col>
+            <Col s={3}>
+              <strong>Shipping Status: </strong>
+              Not Shipped
+            </Col>
+          </Row>
         ) : null}
       </div>
     </div>
