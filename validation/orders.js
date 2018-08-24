@@ -17,8 +17,8 @@
       .max(16)
       .required(),
       month:Joi.string()
-      .min(4)
-      .max(4)
+      .min(2)
+      .max(2)
       .required(),
       year: Joi.string()
       .min(4)
@@ -57,10 +57,10 @@
           break;
         case 'year':
           errors[key] =
-           'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
+           '';
          break;
         case 'securityCode':
-          errors[key] = 'passwords must match';
+          errors[key] = 'input the three digits on your card';
           break;
         case '':
           errors[key] = 'state field is invalid';
