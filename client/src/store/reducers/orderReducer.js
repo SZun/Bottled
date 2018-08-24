@@ -3,13 +3,15 @@ import {
   FETCH_PURCHASED,
   LOADING,
   CREATE_ORDER,
-  DELETE_ORDER
+  DELETE_ORDER,
+  PURCHASE_ORDER
 } from '../actions/types';
 
 const initialState = {
   loading: false,
   purchased: {},
-  notPurchased: {}
+  notPurchased: {},
+  purchasing: false
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +20,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+    case PURCHASE_ORDER:
+      return {
+        ...state,
+        purchasing: true
       };
     case FETCH_PURCHASED:
       return {

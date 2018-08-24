@@ -4,7 +4,8 @@ import {
   GET_ERRORS,
   CREATE_ORDER,
   DELETE_ORDER,
-  PURCHASE_ORDER
+  PURCHASE_ORDER,
+  CLEAR_ERRORS
 } from '../actions/types';
 import axios from '../../axios/orderRoutes';
 
@@ -73,6 +74,9 @@ export const fetchNotPurchased = () => async dispatch => {
 // Purchase Orders
 export const purchaseOrders = card => async dispatch => {
   try {
+    dispatch({
+      type: CLEAR_ERRORS
+    });
     await axios.put('/checkout', card);
     dispatch({
       type: PURCHASE_ORDER

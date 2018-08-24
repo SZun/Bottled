@@ -25,7 +25,8 @@ class Checkout extends Component {
     name: '',
     country: '',
     zipCode: '',
-    errors: {}
+    errors: {},
+    show: false
   };
 
   onSubmitHandler = () => {
@@ -138,8 +139,25 @@ class Checkout extends Component {
     ));
 
     let cards;
+    let price;
 
     if (this.props.order.notPurchased.length > 0) {
+      price = (
+        <h5
+          style={{
+            textAlign: 'center'
+          }}
+        >
+          Your Estimated Price Is:{' '}
+          <span
+            style={{
+              color: '#228b22'
+            }}
+          >
+            ${parseInt(this.props.order.notPurchased.length * 4.99).toFixed(2)}
+          </span>
+        </h5>
+      );
       cards = this.props.order.notPurchased.map(order => (
         <CheckoutCard
           name={order.name}
@@ -153,7 +171,7 @@ class Checkout extends Component {
 
     let modal;
 
-    if (show) {
+    if (this.props.order.purchasing) {
       const {
         streetAddress,
         city,
@@ -191,6 +209,7 @@ class Checkout extends Component {
     return (
       <div className="container" style={{ marginTop: '5%' }}>
         {modal}
+        {price}
         <Input
           placeholder="4242 4242 4242 4242"
           name="creditCard"
