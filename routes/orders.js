@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 import passport from 'passport';
 import Order from '../models/Order';
-import { CLIENT_RENEG_LIMIT } from 'tls';
+import validateCheckOut from '../validation/orders';
 
 //Import Validation
 // @route POST /api/orders
@@ -15,8 +15,7 @@ router.post(
   async (req, res) => {
     try {
       const errors = {};
-      //    const {error} = // Validation function;
-      // Custom Validation
+         const {error} = validateCheckOut(req.body);
         const { name, description, imageUrl } = req.body.beer;
         const _user = req.user._id;
         let order = await new Order({
