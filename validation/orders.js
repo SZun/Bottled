@@ -59,13 +59,13 @@
           errors[key] =
            'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
          break;
-        case 'sercuityCode':
+        case 'securityCode':
           errors[key] = 'passwords must match';
           break;
-        case 'state':
+        case '':
           errors[key] = 'state field is invalid';
        break;
-       case 'city':
+       case 'name':
          errors[key] = 'city field is invalid';
        break;
        case 'streetAddress':
