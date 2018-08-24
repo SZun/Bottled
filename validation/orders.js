@@ -56,8 +56,7 @@
            errors[key] = 'example 11/19';
           break;
         case 'year':
-          errors[key] = 'add the year the card expires'
-           '';
+          errors[key] = 'add the year the card expires';
          break;
         case 'securityCode':
           errors[key] = 'input the three digits on your card';
@@ -78,5 +77,4 @@
 
 
 
-//export{};
-//export{};
+export default validateCheckOut;
