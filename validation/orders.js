@@ -50,7 +50,7 @@
       const key = errorVal.split(' ')[0];
          switch (key) {
          case 'creditCard':
-          errors[key] = 'name must be between 5-50 characters';
+          errors[key] = 'Input the 16 digits on your card';
          break;
          case 'month':
            errors[key] = 'email is invalid';
@@ -69,7 +69,7 @@
          errors[key] = 'city field is invalid';
        break;
        case 'country':
-           errors[key] = 'street address field is invalid';
+           errors[key] = 'INn';
           break;
         case 'zipCode':
           errors[key] = 'zip code is invalid';
