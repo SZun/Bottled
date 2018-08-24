@@ -5,7 +5,7 @@ import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import { Row } from 'react-materialize';
 import CheckoutCard from '../components/CheckoutCard';
-import { fetchNotPurchased } from '../store/actions/orderActions';
+import { fetchNotPurchased, deleteOrder } from '../store/actions/orderActions';
 
 class Checkout extends Component {
   state = {
@@ -15,10 +15,19 @@ class Checkout extends Component {
     securityCode: '',
     name: '',
     country: '',
-    zipCode: ''
+    zipCode: '',
+    deletion: false
   };
 
   componentDidMount = () => {
+    this.props.fetchNotPurchased();
+  };
+
+  onDeleteHandler = id => {
+    this.setState({
+      deletion: !this.state.deletion
+    });
+    this.props.deleteOrder(id);
     this.props.fetchNotPurchased();
   };
 
@@ -85,12 +94,11 @@ class Checkout extends Component {
     let cards;
 
     if (this.props.order.notPurchased.length > 0) {
-      console.log(window.location.href);
       cards = this.props.order.notPurchased.map(order => (
         <CheckoutCard
           name={order.name}
           description={order.description}
-          onClick={() => console.log('banan')}
+          onClick={() => this.onDeleteHandler(order._id)}
           key={order._id}
           isCheckout
         />
@@ -152,7 +160,8 @@ class Checkout extends Component {
 
 Checkout.propTypes = {
   order: PropTypes.object.isRequired,
-  fetchNotPurchased: PropTypes.func.isRequired
+  fetchNotPurchased: PropTypes.func.isRequired,
+  deleteOrder: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -161,5 +170,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchNotPurchased }
+  { fetchNotPurchased, deleteOrder }
 )(Checkout);

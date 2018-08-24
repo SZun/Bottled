@@ -3,7 +3,8 @@ import {
   FETCH_PURCHASED,
   GET_ERRORS,
   LOADING,
-  CREATE_ORDER
+  CREATE_ORDER,
+  DELETE_ORDER
 } from '../actions/types';
 import axios from '../../axios/orderRoutes';
 
@@ -26,7 +27,9 @@ export const createOrder = beer => async dispatch => {
 export const deleteOrder = id => async dispatch => {
   try {
     await axios.delete(`/${id}`);
-    fetchOrders();
+    dispatch({
+      type: DELETE_ORDER
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

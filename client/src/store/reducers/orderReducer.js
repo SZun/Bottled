@@ -2,7 +2,8 @@ import {
   FETCH_NOT_PURCHASED,
   FETCH_PURCHASED,
   LOADING,
-  CREATE_ORDER
+  CREATE_ORDER,
+  DELETE_ORDER
 } from '../actions/types';
 
 const initialState = {
@@ -31,6 +32,10 @@ export default function(state = initialState, action) {
         loading: true
       };
     case CREATE_ORDER:
+      return {
+        ...state
+      };
+    case DELETE_ORDER:
       return {
         ...state
       };
