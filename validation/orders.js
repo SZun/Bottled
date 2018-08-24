@@ -44,40 +44,40 @@
    return Joi.validate(validInfo, schema, {abortEarly:false});
  }
 
-// if (error) {
-//     error.details.map(err => {
-//       const errorVal = err.message.replace(/"/g, '');
-//       const key = errorVal.split(' ')[0];
-//       switch (key) {
-//         case 'name':
-//           errors[key] = 'name must be between 5-50 characters';
-//           break;
-//         case 'email':
-//           errors[key] = 'email is invalid';
-//           break;
-//         case 'password':
-//           errors[key] =
-//             'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
-//           break;
-//         case 'confirmPassword':
-//           errors[key] = 'passwords must match';
-//           break;
-//         case 'state':
-//           errors[key] = 'state field is invalid';
-//           break;
-//         case 'city':
-//           errors[key] = 'city field is invalid';
-//           break;
-//         case 'streetAddress':
-//           errors[key] = 'street address field is invalid';
-//           break;
-//         case 'zipCode':
-//           errors[key] = 'zip code is invalid';
-//           break;
-//         default:
-//           return;
-//       }
-//     });
+ if (error) {
+     error.details.map(err => {
+       const errorVal = err.message.replace(/"/g, '');
+      const key = errorVal.split(' ')[0];
+         switch (key) {
+         case 'creditCard':
+          errors[key] = 'name must be between 5-50 characters';
+         break;
+         case 'email':
+           errors[key] = 'email is invalid';
+          break;
+        case 'password':
+          errors[key] =
+           'must have 8-26 characters, lowercase, uppercase, numeric and symbol';
+         break;
+        case 'confirmPassword':
+          errors[key] = 'passwords must match';
+          break;
+        case 'state':
+          errors[key] = 'state field is invalid';
+       break;
+       case 'city':
+         errors[key] = 'city field is invalid';
+       break;
+       case 'streetAddress':
+           errors[key] = 'street address field is invalid';
+          break;
+        case 'zipCode':
+          errors[key] = 'zip code is invalid';
+          break;
+        default:
+          return;
+      }
+    });
 
 
 
