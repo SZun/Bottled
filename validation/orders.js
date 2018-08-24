@@ -53,7 +53,7 @@
           errors[key] = 'Input the 16 digits on your card';
          break;
          case 'month':
-           errors[key] = 'email is invalid';
+           errors[key] = 'example 11/19';
           break;
         case 'year':
           errors[key] =
