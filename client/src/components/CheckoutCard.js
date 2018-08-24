@@ -38,7 +38,25 @@ const CheckoutCard = ({
               Not Shipped
             </Col>
           </Row>
-        ) : null}
+        ) : (
+          <Row
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <Col s={4}>
+              <strong>Price: </strong>
+              $4.99
+            </Col>
+            <Col s={4}>
+              <strong>Quantity: </strong>1
+            </Col>
+            <Col s={4}>
+              <strong>Shipping Status: </strong>
+              Shipped
+            </Col>
+          </Row>
+        )}
       </div>
     </div>
   </Col>

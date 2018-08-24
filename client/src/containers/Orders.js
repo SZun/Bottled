@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from '../components/header';
+// import Header from '../components/header';
 import { Row, Col } from 'react-materialize';
 import { fetchPurchased } from '../store/actions/orderActions';
 import PropTypes from 'prop-types';
+import CheckoutCard from '../components/CheckoutCard';
 
 class Orders extends Component {
   componentDidMount = () => {
@@ -11,15 +12,29 @@ class Orders extends Component {
   };
 
   render() {
+    let orders;
+    if (this.props.order.purchased.length > 0) {
+      orders = this.props.order.purchased.map(order => (
+        <CheckoutCard
+          name={order.name}
+          description={order.description}
+          key={order._id}
+        />
+      ));
+    }
     return (
       <div className="container">
         <Row>
-          <Col s={5}>
-            <Header>In Transit...</Header>
-          </Col>
-          <Col s={2} />
-          <Col s={5}>
-            <Header>Completed</Header>
+          <Col s={12}>
+            {/* <Header>Your Orders</Header> */}
+            <h3
+              style={{
+                textAlign: 'center'
+              }}
+            >
+              Your Orders
+            </h3>
+            {orders}
           </Col>
         </Row>
       </div>
