@@ -8,7 +8,6 @@ import { Row } from 'react-materialize';
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
 import Modal from '../components/Modal/Modal';
-import moment from 'moment';
 
 class SignUp extends Component {
   state = {

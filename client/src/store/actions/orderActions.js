@@ -71,13 +71,12 @@ export const fetchNotPurchased = () => async dispatch => {
 };
 
 // Purchase Orders
-export const purchaseOrders = (card, history) => async dispatch => {
+export const purchaseOrders = card => async dispatch => {
   try {
     await axios.put('/checkout', card);
     dispatch({
       type: PURCHASE_ORDER
     });
-    history.push('/orders');
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

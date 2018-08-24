@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Input from '../components/Input/Input';
-import Button from '../components/Button';
-import { Row } from 'react-materialize';
-import CheckoutCard from '../components/CheckoutCard';
 import { withRouter } from 'react-router-dom';
 import {
   fetchNotPurchased,
   deleteOrder,
   purchaseOrders
 } from '../store/actions/orderActions';
+import { getUserData } from '../store/actions/authActions';
+
+import Input from '../components/Input/Input';
+import Button from '../components/Button';
+import { Row } from 'react-materialize';
+import CheckoutCard from '../components/CheckoutCard';
+import Modal from '../components/Modal/Modal';
+import moment from 'moment';
 
 class Checkout extends Component {
   state = {
@@ -44,7 +48,10 @@ class Checkout extends Component {
       zipCode
     };
 
-    this.props.purchaseOrders(data, this.props.history);
+    this.props.purchaseOrders(data);
+    this.setState({
+      show: true
+    });
   };
 
   componentWillReceiveProps(nextProps) {
@@ -55,6 +62,7 @@ class Checkout extends Component {
 
   componentDidMount = () => {
     this.props.fetchNotPurchased();
+    this.props.getUserData();
   };
 
   onDeleteHandler = id => {
@@ -64,7 +72,8 @@ class Checkout extends Component {
 
   onChangeHandler = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      show: false
     });
   };
 
@@ -77,7 +86,8 @@ class Checkout extends Component {
       name,
       country,
       zipCode,
-      errors
+      errors,
+      show
     } = this.state;
     const dateVals = [
       {
@@ -140,8 +150,47 @@ class Checkout extends Component {
         />
       ));
     }
+
+    let modal;
+
+    if (show) {
+      const {
+        streetAddress,
+        city,
+        state,
+        zipCode,
+        name
+      } = this.props.user.userData;
+      modal = (
+        <Modal
+          show={show}
+          modalClosed={() => this.props.history.push('/orders')}
+        >
+          <div
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <h1>Hey {name}!</h1>
+            <h4>Thanks for shopping with Bottled!</h4>
+            <p>
+              Your order with be shipped to{' '}
+              <strong>
+                {`${streetAddress}, ${city}, ${state}, ${zipCode}`} by{' '}
+                {moment()
+                  .add(7, 'days')
+                  .format('MM-DD-YYYY')}
+              </strong>
+            </p>
+            <h1>Enjoy!</h1>
+          </div>
+        </Modal>
+      );
+    }
+
     return (
       <div className="container" style={{ marginTop: '5%' }}>
+        {modal}
         <Input
           placeholder="4242 4242 4242 4242"
           name="creditCard"
@@ -203,15 +252,17 @@ Checkout.propTypes = {
   fetchNotPurchased: PropTypes.func.isRequired,
   deleteOrder: PropTypes.func.isRequired,
   purchaseOrders: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  getUserData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   order: state.order,
-  errors: state.errors
+  errors: state.errors,
+  user: state.user
 });
 
 export default connect(
   mapStateToProps,
-  { fetchNotPurchased, deleteOrder, purchaseOrders }
+  { fetchNotPurchased, deleteOrder, purchaseOrders, getUserData }
 )(withRouter(Checkout));
