@@ -75,7 +75,7 @@ router.put(
   async (req, res) => {
     try {
       const errors = {};
-
+      req.body.creditCard = req.body.creditCard.replace(/\s/g, '');
       const { error } = validateCheckOut(req.body);
       if (error) {
         error.details.map(err => {
@@ -86,7 +86,7 @@ router.put(
               errors[key] = 'Input the 16 digits on your card';
               break;
             case 'month':
-              errors[key] = 'example 11/19';
+              errors[key] = 'example 12';
               break;
             case 'year':
               errors[key] = 'add the year the card expires';
