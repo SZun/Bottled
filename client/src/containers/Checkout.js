@@ -11,7 +11,7 @@ import { getUserData } from '../store/actions/authActions';
 
 import Input from '../components/Input/Input';
 import Button from '../components/Button';
-import { Row } from 'react-materialize';
+import { Row, Col } from 'react-materialize';
 import CheckoutCard from '../components/CheckoutCard';
 import Modal from '../components/Modal/Modal';
 import moment from 'moment';
@@ -26,7 +26,11 @@ class Checkout extends Component {
     country: '',
     zipCode: '',
     errors: {},
-    show: false
+    show: false,
+    visa: false,
+    mastercard: false,
+    discovery: false,
+    amex: false
   };
 
   onSubmitHandler = () => {
@@ -72,10 +76,37 @@ class Checkout extends Component {
   };
 
   onChangeHandler = e => {
+    const { creditCard } = this.state;
     this.setState({
       [e.target.name]: e.target.value,
-      show: false
+      show: false,
+      visa: false,
+      mastercard: false,
+      amex: false,
+      discovery: false
     });
+    if (creditCard.split('').length >= 1) {
+      const arr = creditCard
+        .split('')
+        .splice(0, 1)
+        .join('');
+      switch (arr) {
+        case '4':
+          this.setState({ visa: true });
+          break;
+        case '5':
+          this.setState({ mastercard: true });
+          break;
+        case '6':
+          this.setState({ discovery: true });
+          break;
+        case '3':
+          this.setState({ amex: true });
+          break;
+        default:
+          return;
+      }
+    }
   };
 
   render() {
@@ -88,7 +119,11 @@ class Checkout extends Component {
       country,
       zipCode,
       errors,
-      show
+      show,
+      visa,
+      mastercard,
+      discovery,
+      amex
     } = this.state;
     const dateVals = [
       {
@@ -213,6 +248,56 @@ class Checkout extends Component {
       <div className="container" style={{ marginTop: '5%' }}>
         {modal}
         {price}
+        <Row>
+          <Col s={1}>
+            <i
+              className="fab fa-cc-visa"
+              style={
+                visa
+                  ? {
+                      color: '#40c4ff'
+                    }
+                  : null
+              }
+            />
+          </Col>
+          <Col s={1}>
+            <i
+              className="fab fa-cc-mastercard"
+              style={
+                mastercard
+                  ? {
+                      color: '#40c4ff'
+                    }
+                  : null
+              }
+            />
+          </Col>
+          <Col s={1}>
+            <i
+              className="fab fa-cc-discover"
+              style={
+                discovery
+                  ? {
+                      color: '#40c4ff'
+                    }
+                  : null
+              }
+            />
+          </Col>
+          <Col s={1}>
+            <i
+              className="fab fa-cc-amex"
+              style={
+                amex
+                  ? {
+                      color: '#40c4ff'
+                    }
+                  : null
+              }
+            />
+          </Col>
+        </Row>
         <Input
           placeholder="4242 4242 4242 4242"
           name="creditCard"
