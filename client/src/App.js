@@ -12,6 +12,7 @@ const NotFound = asyncComponent(() => import('./containers/NotFound'));
 const Homepage = asyncComponent(() => import('./containers/Homepage'));
 const Shop = asyncComponent(() => import('./containers/Shop'));
 const Orders = asyncComponent(() => import('./containers/Orders'));
+const Reviews = asyncComponent(() => import('./containers/Reviews'));
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <PrivateRoute exact path="/checkout" component={Checkout} />
           <PrivateRoute exact path="/shop" component={Shop} />
           <PrivateRoute exact path="/orders" component={Orders} />
+          <PrivateRoute exact path="/reviews" component={Reviews} />
           {/* If Route not found, redirect to 404 page */}
           <Route path="*" component={NotFound} />
         </Switch>
