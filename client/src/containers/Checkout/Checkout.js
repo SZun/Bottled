@@ -6,15 +6,17 @@ import {
   fetchNotPurchased,
   deleteOrder,
   purchaseOrders
-} from '../store/actions/orderActions';
-import { getUserData } from '../store/actions/authActions';
+} from '../../store/actions/orderActions';
+import { getUserData } from '../../store/actions/authActions';
 
-import Input from '../components/Input/Input';
-import Button from '../components/Button';
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button';
 import { Row, Col } from 'react-materialize';
-import CheckoutCard from '../components/CheckoutCard';
-import Modal from '../components/Modal/Modal';
+import CheckoutCard from '../../components/CheckoutCard';
+import Modal from '../../components/Modal/Modal';
 import moment from 'moment';
+
+import './Checkout.css';
 
 class Checkout extends Component {
   state = {
