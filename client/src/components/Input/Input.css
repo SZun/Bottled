@@ -20,3 +20,12 @@
 .input-field .prefix.active {
   color: #40c4ff !important;
 }
+
+.errorField {
+  margin: -2% !important;
+}
+
+.input-field {
+  top: 20px;
+  height: 15vh;
+}

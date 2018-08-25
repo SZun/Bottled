@@ -20,6 +20,7 @@ const TextInput = ({
         margin: 0,
         padding: 0
       }}
+      className={'errorField'}
     >
       {error}
     </div>
@@ -29,6 +30,7 @@ const TextInput = ({
       type={type}
       s={s}
       name={name}
+      class={name}
       value={value}
       onChange={onChange}
       style={
