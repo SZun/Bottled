@@ -40,7 +40,8 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const { text, userName } = req.body;
+      const { text } = req.body;
+      const userName = req.user.name;
       const _user = req.user._id;
 
       const beer = await Beer.findById(req.params.id);

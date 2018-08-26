@@ -2,7 +2,15 @@ import React from 'react';
 import { Col } from 'react-materialize';
 import Button from './Button';
 
-const BeerItem = ({ image, description, name, onClick, onChange }) => (
+const ReviewCard = ({
+  image,
+  description,
+  beerName,
+  onClick,
+  onChange,
+  name,
+  value
+}) => (
   <Col s={12}>
     <div className="card horizontal beerImg">
       <div className="card-image">
@@ -17,13 +25,19 @@ const BeerItem = ({ image, description, name, onClick, onChange }) => (
                 textDecoration: 'underline'
               }}
             >
-              {name}
+              {beerName}
             </strong>
           </h5>
           <p>{description}</p>
         </div>
         <div className="card-action">
-          <textarea onChange={onChange} />
+          <textarea
+            onChange={onChange}
+            name={name}
+            value={value}
+            placeholder="Comment..."
+            type="text"
+          />
           <Button iconName="message" large right onClick={onClick}>
             Comment
           </Button>
@@ -33,4 +47,4 @@ const BeerItem = ({ image, description, name, onClick, onChange }) => (
   </Col>
 );
 
-export default BeerItem;
+export default ReviewCard;

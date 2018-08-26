@@ -8,10 +8,21 @@ import ReviewCard from '../components/ReviewCard';
 // import Comments from '../components/Comments';
 
 class Reviews extends Component {
+  state = {
+    comment: ''
+  };
+
   componentDidMount = () => {
     const beerId = this.props.history.location.pathname.split('/')[2];
     this.props.fetchBeer(beerId);
   };
+
+  onChangeHandler = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   render() {
     let reviewContent;
     if (this.props.beer.loading) {
@@ -26,15 +37,17 @@ class Reviews extends Component {
       );
     }
     if (this.props.beer.review !== null && !this.props.beer.loading) {
-      console.log('baan');
       const { name, description, image_url } = this.props.beer.review;
+      const { comment } = this.state;
       reviewContent = (
         <ReviewCard
-          name={name}
+          beerName={name}
           description={description}
+          name="comment"
+          value={comment}
           image={image_url}
-          onClick={() => console.log('on banan')}
-          onChange={() => console.log('on banan')}
+          onClick={() => console.log(comment)}
+          onChange={this.onChangeHandler}
         />
       );
     }
