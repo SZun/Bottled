@@ -71,11 +71,7 @@ class Reviews extends Component {
                 <Comments
                   name={cmnt.userName}
                   comment={cmnt.text}
-                  isUser={
-                    this.props.beer.review.comments._user === this.props.auth.id
-                      ? true
-                      : false
-                  }
+                  isUser={cmnt._user === this.props.auth.user.id ? true : false}
                   onClick={() => this.onCommentDeleteHandler(_id, cmnt._id)}
                   key={cmnt._id}
                 />
