@@ -74,6 +74,7 @@ class Reviews extends Component {
                   isUser={cmnt._user === this.props.auth.user.id ? true : false}
                   onClick={() => this.onCommentDeleteHandler(_id, cmnt._id)}
                   key={cmnt._id}
+                  date={cmnt.date}
                 />
               ))
             : null}

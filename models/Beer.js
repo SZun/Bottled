@@ -35,6 +35,11 @@ const beerSchema = new Schema({
         type: String,
         required: true,
         trim: true
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+        required: true
       }
     }
   ]
