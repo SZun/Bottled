@@ -110,10 +110,9 @@ router.put(
         return res.status(400).json(errors);
       }
 
-      const order = await Order.update(
+      const order = await Order.updateMany(
         { _user: req.user._id },
         { $set: { purchased: true } },
-        { multi: true },
         { new: true }
       );
       res.send(order);
