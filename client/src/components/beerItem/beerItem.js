@@ -3,7 +3,7 @@ import { Col } from 'react-materialize';
 import { Button, Icon } from 'react-materialize';
 import './beerItem.css';
 
-const BeerItem = ({ image, description, name, onClick }) => (
+const BeerItem = ({ image, description, name, onClick, onReview }) => (
   <Col s={3}>
     <div className="card horizontal beerImg">
       <div className="card-image">
@@ -37,6 +37,15 @@ const BeerItem = ({ image, description, name, onClick }) => (
             </strong>
             $4.99
           </p>
+          <Button
+            style={{
+              float: 'right'
+            }}
+            onClick={onReview}
+            className="z-depth-3 light-blue accent-2"
+          >
+            More ...
+          </Button>
         </div>
       </div>
     </div>

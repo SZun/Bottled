@@ -5,6 +5,7 @@ import { Row, Col } from 'react-materialize';
 import { fetchPurchased } from '../store/actions/orderActions';
 import PropTypes from 'prop-types';
 import CheckoutCard from '../components/CheckoutCard';
+import Spinner from '../components/Spinner';
 
 class Orders extends Component {
   componentDidMount = () => {
@@ -13,6 +14,17 @@ class Orders extends Component {
 
   render() {
     let orders;
+    if (this.props.order.loading) {
+      orders = (
+        <div>
+          <Spinner />{' '}
+          <p style={{ textAlign: 'center' }}>
+            Checking for orders... If this spinner does not go away, you may not
+            have made any purchases
+          </p>
+        </div>
+      );
+    }
     if (this.props.order.purchased.length > 0) {
       orders = this.props.order.purchased.map(order => (
         <CheckoutCard

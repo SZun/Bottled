@@ -34,6 +34,17 @@ class Shop extends Component {
     this.props.fetchNotPurchased();
   };
 
+  onReviewHandler = i => {
+    const { allBeers } = this.state;
+    const { name, description, image_url } = allBeers[i];
+    const beer = {
+      name,
+      description,
+      image_url
+    };
+    console.log(beer);
+  };
+
   render() {
     const { allBeers } = this.state;
     const allBeerItems =
@@ -45,6 +56,7 @@ class Shop extends Component {
             description={beer.description}
             onClick={() => this.addToCart(i)}
             key={i}
+            onReview={() => this.onReviewHandler(i)}
           />
         ))
       ) : (
