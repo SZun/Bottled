@@ -27,7 +27,7 @@ passportMiddleware(passport);
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('api/beers', beerRoutes);
+app.use('/api/beers', beerRoutes);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

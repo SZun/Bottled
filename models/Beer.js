@@ -22,7 +22,7 @@ const beerSchema = new Schema({
   },
   comments: [
     {
-      user: {
+      _user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
       },
@@ -31,7 +31,7 @@ const beerSchema = new Schema({
         required: true,
         trim: true
       },
-      name: {
+      userName: {
         type: String,
         required: true,
         trim: true

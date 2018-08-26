@@ -13,7 +13,7 @@ router.post(
   async (req, res) => {
     try {
       const { name, description, image_url } = req.body;
-      let beer = await Beer.findOne({ name, description, image_url });
+      let beer = await Beer.findOne({ name, image_url, description });
       if (beer) {
         res.send(beer);
       } else {
@@ -26,7 +26,8 @@ router.post(
         res.send(beer);
       }
     } catch (err) {
-      res.status(400).send({ swr: 'Something went wrong' });
+      res.status(400).send(`${err.message}`);
+      // res.status(400).send({ swr: 'Something went wrong' });
     }
   }
 );
@@ -39,13 +40,13 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const { text, name } = req.body;
+      const { text, userName } = req.body;
       const _user = req.user._id;
 
       const beer = await Beer.findById(req.params.id);
       const newComment = {
         text,
-        name,
+        userName,
         _user
       };
       beer.comments.unshift(newComment);
