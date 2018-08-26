@@ -3,6 +3,8 @@ import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { createOrder, fetchNotPurchased } from '../store/actions/orderActions';
+import { postBeer } from '../store/actions/beerActions';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import PropTypes from 'prop-types';
@@ -34,6 +36,17 @@ class Shop extends Component {
     this.props.fetchNotPurchased();
   };
 
+  onReviewHandler = i => {
+    const { allBeers } = this.state;
+    const { name, description, image_url } = allBeers[i];
+    const beer = {
+      name,
+      description,
+      image_url
+    };
+    this.props.postBeer(beer, this.props.history);
+  };
+
   render() {
     const { allBeers } = this.state;
     const allBeerItems =
@@ -45,6 +58,7 @@ class Shop extends Component {
             description={beer.description}
             onClick={() => this.addToCart(i)}
             key={i}
+            onReview={() => this.onReviewHandler(i)}
           />
         ))
       ) : (
@@ -55,10 +69,12 @@ class Shop extends Component {
 }
 
 Shop.propTypes = {
-  createOrder: PropTypes.func.isRequired
+  createOrder: PropTypes.func.isRequired,
+  fetchNotPurchased: PropTypes.func.isRequired,
+  postBeer: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { createOrder, fetchNotPurchased }
-)(Shop);
+  { createOrder, fetchNotPurchased, postBeer }
+)(withRouter(Shop));

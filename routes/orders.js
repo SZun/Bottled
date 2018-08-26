@@ -26,7 +26,7 @@ router.post(
       await order.save();
       res.send(order);
     } catch (err) {
-      res.status(400).send(`${err.message}`);
+      res.status(400).send({ swr: 'Something went wrong' });
     }
   }
 );
@@ -43,7 +43,7 @@ router.get(
       const order = await Order.find({ _user: req.user._id, purchased: true });
       res.send(order);
     } catch (err) {
-      res.status(400).send('No orders found');
+      res.status(400).send({ noOrderFound: 'No orders found' });
     }
   }
 );
@@ -60,7 +60,7 @@ router.get(
       const order = await Order.find({ _user: req.user._id, purchased: false });
       res.send(order);
     } catch (err) {
-      res.status(400).send('No orders found');
+      res.status(400).send({ noOrderFound: 'No orders found' });
     }
   }
 );
@@ -110,14 +110,15 @@ router.put(
         return res.status(400).json(errors);
       }
 
-      const order = await Order.updateMany(
+      const order = await Order.update(
         { _user: req.user._id },
-        { purchased: true },
+        { $set: { purchased: true } },
+        { multi: true },
         { new: true }
       );
       res.send(order);
     } catch (err) {
-      res.status(400).send('No orders found');
+      res.status(400).send({ noOrderFound: 'No orders found' });
     }
   }
 );
@@ -134,7 +135,7 @@ router.delete(
       const order = await Order.findByIdAndRemove(req.params.id);
       res.send(order);
     } catch (err) {
-      res.status(400).send('No orders found');
+      res.status(400).send({ noOrderFound: 'No orders found' });
     }
   }
 );

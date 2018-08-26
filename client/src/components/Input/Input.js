@@ -30,7 +30,6 @@ const TextInput = ({
       type={type}
       s={s}
       name={name}
-      class={name}
       value={value}
       onChange={onChange}
       style={
