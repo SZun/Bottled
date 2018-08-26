@@ -1,25 +1,23 @@
 import React from 'react';
-import { Card, CardTitle, Col, Button, Icon } from 'react-materialize';
+import { Card, Col, Button, Icon } from 'react-materialize';
 
-const Comments = ({ name, isUser, comment, onClick, right, left }) => {
+const Comments = ({ name, isUser, comment, onClick }) => {
   return (
     <div>
       <Col s={12}>
         <Card>
-          <CardTitle>
-            <p style={{ textDecoration: 'underline' }}>
+          <div className="card-title">
+            <p style={{ textDecoration: 'underline', color: '#000' }}>
               {/* maybe add float left */}
               <strong>{name}</strong>
             </p>
-          </CardTitle>{' '}
+          </div>{' '}
           <div className="card-content">
             <p>{comment}</p>
           </div>
-          {isUser ? (
+          {isUser === true ? (
             <Button className="red" onClick={onClick}>
-              <Icon right={right} left={left}>
-                delete_forever
-              </Icon>
+              <Icon>delete_forever</Icon>
             </Button>
           ) : null}
         </Card>

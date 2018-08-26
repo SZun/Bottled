@@ -12,3 +12,5 @@ export const GET_USER_DATA = 'GET_USER_DATA';
 
 export const FETCH_BEER = 'FETCH_BEER';
 export const POST_BEER = 'POST_BEER';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';

@@ -1,4 +1,10 @@
-import { LOADING, POST_BEER, GET_ERRORS, FETCH_BEER } from './types';
+import {
+  LOADING,
+  POST_BEER,
+  GET_ERRORS,
+  FETCH_BEER,
+  ADD_COMMENT
+} from './types';
 import axios from '../../axios/beerRoutes';
 
 export const postBeer = (beer, history) => async dispatch => {
@@ -23,6 +29,21 @@ export const fetchBeer = id => async dispatch => {
     const res = await axios.get(`/${id}`);
     dispatch({
       type: FETCH_BEER,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    });
+  }
+};
+
+export const addComment = id => async dispatch => {
+  try {
+    const res = await axios.post(`/comment/${id}`);
+    dispatch({
+      type: ADD_COMMENT,
       payload: res.data
     });
   } catch (err) {

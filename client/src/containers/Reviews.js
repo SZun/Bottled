@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchBeer } from '../store/actions/beerActions';
+import { fetchBeer, addComment } from '../store/actions/beerActions';
 import PropTypes from 'prop-types';
 import Spinner from '../components/Spinner';
 import ReviewCard from '../components/ReviewCard';
-// import Comments from '../components/Comments';
+import Comments from '../components/Comments';
 
 class Reviews extends Component {
   state = {
     comment: ''
+  };
+
+  onSubmitHandler = id => {
+    this.props.addComment(id);
   };
 
   componentDidMount = () => {
@@ -37,18 +41,35 @@ class Reviews extends Component {
       );
     }
     if (this.props.beer.review !== null && !this.props.beer.loading) {
-      const { name, description, image_url } = this.props.beer.review;
+      const { name, description, image_url, _id } = this.props.beer.review;
       const { comment } = this.state;
       reviewContent = (
-        <ReviewCard
-          beerName={name}
-          description={description}
-          name="comment"
-          value={comment}
-          image={image_url}
-          onClick={() => console.log(comment)}
-          onChange={this.onChangeHandler}
-        />
+        <div>
+          <ReviewCard
+            beerName={name}
+            description={description}
+            name="comment"
+            value={comment}
+            image={image_url}
+            onClick={() => this.onSubmitHandler(_id)}
+            onChange={this.onChangeHandler}
+          />
+          {this.props.beer.review.hasOwnProperty('comments')
+            ? this.props.beer.review.comments.map(cmnt => (
+                <Comments
+                  name={cmnt.userName}
+                  comment={cmnt.text}
+                  isUser={
+                    this.props.beer.review.comments._user === this.props.auth.id
+                      ? true
+                      : false
+                  }
+                  onClick={() => console.log('clicked')}
+                  key={cmnt._id}
+                />
+              ))
+            : null}
+        </div>
       );
     }
     return <div>{reviewContent}</div>;
@@ -57,14 +78,16 @@ class Reviews extends Component {
 
 Reviews.propTypes = {
   fetchBeer: PropTypes.func.isRequired,
-  beer: PropTypes.object.isRequired
+  beer: PropTypes.object.isRequired,
+  addComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  beer: state.beer
+  beer: state.beer,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { fetchBeer }
+  { fetchBeer, addComment }
 )(withRouter(Reviews));
