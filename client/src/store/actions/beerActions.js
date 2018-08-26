@@ -40,9 +40,9 @@ export const fetchBeer = id => async dispatch => {
   }
 };
 
-export const addComment = id => async dispatch => {
+export const addComment = (id, comment) => async dispatch => {
   try {
-    const res = await axios.post(`/comment/${id}`);
+    const res = await axios.post(`/comment/${id}`, comment);
     dispatch({
       type: ADD_COMMENT,
       payload: res.data

@@ -22,7 +22,11 @@ class Reviews extends Component {
   };
 
   onSubmitHandler = id => {
-    this.props.addComment(id);
+    const comment = {
+      text: this.state.comment
+    };
+    this.props.addComment(id, comment);
+    this.setState({ comment: '' });
   };
 
   onCommentDeleteHandler = (id, comment_id) => {
