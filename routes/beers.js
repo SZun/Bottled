@@ -59,7 +59,23 @@ router.post(
   }
 );
 
-// @route POST /api/beer
+// @route GET /api/beer
+// @desc Get beer
+// @access Private
+router.get(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const beer = await Beer.findById(req.params.id);
+      res.send(beer);
+    } catch (err) {
+      res.status(400).send({ swr: 'Something went wrong' });
+    }
+  }
+);
+
+// @route DELETE /api/beer
 // @desc Delete a comment
 // @access Private
 router.delete(

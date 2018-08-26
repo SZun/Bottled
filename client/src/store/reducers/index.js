@@ -10,5 +10,5 @@ export default combineReducers({
   errors: errorsReducer,
   order: orderReducer,
   user: userDataReducer,
-  review: beerReducer
+  beer: beerReducer
 });

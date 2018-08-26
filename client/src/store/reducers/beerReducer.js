@@ -1,7 +1,7 @@
-import { LOADING, FETCH_BEER } from '../actions/types';
+import { LOADING, FETCH_BEER, POST_BEER } from '../actions/types';
 
 const initialState = {
-  beer: {},
+  review: {},
   loading: false
 };
 
@@ -15,9 +15,12 @@ export default function(state = initialState, action) {
     case FETCH_BEER:
       return {
         ...state,
-        type: FETCH_BEER,
-        beer: action.payload,
+        review: action.payload,
         loading: false
+      };
+    case POST_BEER:
+      return {
+        ...state
       };
     default:
       return state;
