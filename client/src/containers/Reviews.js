@@ -13,13 +13,20 @@ import Comments from '../components/Comments';
 
 class Reviews extends Component {
   state = {
-    comment: ''
+    comment: '',
+    errors: {}
   };
 
   componentDidMount = () => {
     const beerId = this.props.history.location.pathname.split('/')[2];
     this.props.fetchBeer(beerId);
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   onSubmitHandler = id => {
     const comment = {
@@ -54,7 +61,7 @@ class Reviews extends Component {
     }
     if (this.props.beer.review !== null && !this.props.beer.loading) {
       const { name, description, image_url, _id } = this.props.beer.review;
-      const { comment } = this.state;
+      const { comment, errors } = this.state;
       reviewContent = (
         <div>
           <ReviewCard
@@ -62,6 +69,7 @@ class Reviews extends Component {
             description={description}
             name="comment"
             value={comment}
+            err={errors.hasOwnProperty('text') ? true : false}
             image={image_url}
             onClick={() => this.onSubmitHandler(_id)}
             onChange={this.onChangeHandler}
@@ -89,12 +97,14 @@ Reviews.propTypes = {
   fetchBeer: PropTypes.func.isRequired,
   beer: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
-  deleteComment: PropTypes.func.isRequired
+  deleteComment: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   beer: state.beer,
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
 export default connect(

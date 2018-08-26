@@ -24,7 +24,7 @@ const BeerItem = ({ image, description, name, onClick, onReview }) => (
           <p>{description}</p>
         </div>
         <div className="card-action">
-          <Button onClick={onClick} className="z-depth-3 light-blue accent-2">
+          <Button onClick={onClick} className="z-depth-3 light-blue accent-2 ">
             <Icon>add</Icon>
           </Button>
           <p>
@@ -42,7 +42,7 @@ const BeerItem = ({ image, description, name, onClick, onReview }) => (
               float: 'right'
             }}
             onClick={onReview}
-            className="z-depth-3 light-blue accent-2"
+            className="z-depth-3 deep-orange accent-2"
           >
             More ...
           </Button>

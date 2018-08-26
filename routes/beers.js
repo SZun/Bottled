@@ -4,6 +4,9 @@ const router = express.Router();
 import passport from 'passport';
 import Beer from '../models/Beer';
 
+//Import Validation
+import validate from '../validation/comment';
+
 // @route POST /api/beer
 // @desc Find or add beer to DB
 // @access Private
@@ -40,6 +43,25 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
+      const { error } = validate(req.body);
+
+      if (error) {
+        const errors = {};
+        error.details.map(err => {
+          const errorVal = err.message.replace(/"/g, '');
+          const key = errorVal.split(' ')[0];
+          switch (key) {
+            case 'text':
+              errors[key] = 'Comment can not be empty';
+              break;
+            default:
+              return;
+          }
+        });
+        console.log(errors);
+        return res.status(400).json(errors);
+      }
+
       const { text } = req.body;
       const userName = req.user.name;
       const _user = req.user._id;

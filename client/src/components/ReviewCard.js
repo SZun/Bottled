@@ -9,7 +9,8 @@ const ReviewCard = ({
   onClick,
   onChange,
   name,
-  value
+  value,
+  err
 }) => (
   <Col s={12}>
     <div className="card horizontal beerImg">
@@ -35,8 +36,18 @@ const ReviewCard = ({
             onChange={onChange}
             name={name}
             value={value}
-            placeholder="Comment..."
+            placeholder={
+              err ? 'Comment can not be empty' : 'Let us know what you think...'
+            }
             type="text"
+            style={
+              err
+                ? {
+                    backgroundColor: '#d49292',
+                    border: '1px solid #FF0000'
+                  }
+                : null
+            }
           />
           <Button iconName="message" large right onClick={onClick}>
             Comment
