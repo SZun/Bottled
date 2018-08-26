@@ -9,3 +9,5 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 export const DELETE_ORDER = 'DELETE_ORDER';
 export const PURCHASE_ORDER = 'PURCHASE_ORDER';
 export const GET_USER_DATA = 'GET_USER_DATA';
+
+export const FETCH_BEER = 'FETCH_BEER';

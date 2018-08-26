@@ -3,6 +3,8 @@ import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { createOrder, fetchNotPurchased } from '../store/actions/orderActions';
+import { fetchBeer } from '../store/actions/beerActions';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import PropTypes from 'prop-types';
@@ -42,7 +44,7 @@ class Shop extends Component {
       description,
       image_url
     };
-    console.log(beer);
+    this.props.fetchBeer(beer, this.props.history);
   };
 
   render() {
@@ -67,10 +69,12 @@ class Shop extends Component {
 }
 
 Shop.propTypes = {
-  createOrder: PropTypes.func.isRequired
+  createOrder: PropTypes.func.isRequired,
+  fetchNotPurchased: PropTypes.func.isRequired,
+  fetchBeer: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { createOrder, fetchNotPurchased }
-)(Shop);
+  { createOrder, fetchNotPurchased, fetchBeer }
+)(withRouter(Shop));
