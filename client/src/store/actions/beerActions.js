@@ -4,7 +4,8 @@ import {
   GET_ERRORS,
   FETCH_BEER,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  CLEAR_ERRORS
 } from './types';
 import axios from '../../axios/beerRoutes';
 
@@ -42,6 +43,7 @@ export const fetchBeer = id => async dispatch => {
 
 export const addComment = (id, comment) => async dispatch => {
   try {
+    dispatch(clearErrors());
     const res = await axios.post(`/comment/${id}`, comment);
     dispatch({
       type: ADD_COMMENT,
@@ -71,3 +73,5 @@ export const deleteComment = (id, comment_id) => async dispatch => {
 };
 
 const loading = () => ({ type: LOADING });
+
+const clearErrors = () => ({ type: CLEAR_ERRORS });
