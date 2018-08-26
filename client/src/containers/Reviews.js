@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchBeer, addComment } from '../store/actions/beerActions';
+import {
+  fetchBeer,
+  addComment,
+  deleteComment
+} from '../store/actions/beerActions';
 import PropTypes from 'prop-types';
 import Spinner from '../components/Spinner';
 import ReviewCard from '../components/ReviewCard';
@@ -12,13 +16,17 @@ class Reviews extends Component {
     comment: ''
   };
 
+  componentDidMount = () => {
+    const beerId = this.props.history.location.pathname.split('/')[2];
+    this.props.fetchBeer(beerId);
+  };
+
   onSubmitHandler = id => {
     this.props.addComment(id);
   };
 
-  componentDidMount = () => {
-    const beerId = this.props.history.location.pathname.split('/')[2];
-    this.props.fetchBeer(beerId);
+  onCommentDeleteHandler = (id, comment_id) => {
+    this.props.deleteComment(id, comment_id);
   };
 
   onChangeHandler = e => {
@@ -64,7 +72,7 @@ class Reviews extends Component {
                       ? true
                       : false
                   }
-                  onClick={() => console.log('clicked')}
+                  onClick={() => this.onCommentDeleteHandler(_id, cmnt._id)}
                   key={cmnt._id}
                 />
               ))
@@ -79,7 +87,8 @@ class Reviews extends Component {
 Reviews.propTypes = {
   fetchBeer: PropTypes.func.isRequired,
   beer: PropTypes.object.isRequired,
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -89,5 +98,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchBeer, addComment }
+  { fetchBeer, addComment, deleteComment }
 )(withRouter(Reviews));
