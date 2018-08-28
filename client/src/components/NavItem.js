@@ -4,7 +4,7 @@ import Button from './Button';
 
 const NavBarItem = ({...props, onClick, iconName, children }) => (
   <NavItem onClick={onClick}>
-    <Button large iconName={iconName} {...props}>
+    <Button large waves='light' iconName={iconName} {...props}>
       {children}
     </Button>
   </NavItem>

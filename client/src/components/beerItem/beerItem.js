@@ -4,7 +4,7 @@ import { Button, Icon } from 'react-materialize';
 import './beerItem.css';
 
 const BeerItem = ({ image, description, name, onClick, onReview }) => (
-  <Col s={3}>
+  <Col s={4}>
     <div className="card horizontal beerImg">
       <div className="card-image">
         <img src={image} alt="beer" />

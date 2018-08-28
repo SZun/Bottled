@@ -13,7 +13,7 @@ const CustomButton = ({
   return (
     <div>
       <Button
-        className="z-depth-3 light-blue accent-2"
+        className="z-depth-3 grey lighten-2 black-text"
         waves="light"
         large={large}
         onClick={onClick}
