@@ -191,10 +191,7 @@ class Checkout extends Component {
               color: '#228b22'
             }}
           >
-            $
-            {parseInt(this.props.order.notPurchased.length * 4.99, 0).toFixed(
-              2
-            )}
+            $ ${this.props.order.notPurchased.length * (4.99).toFixed(2)}
           </span>
         </h5>
       );
@@ -350,6 +347,7 @@ class Checkout extends Component {
         <Button iconName="check" onClick={this.onSubmitHandler} right large>
           Submit
         </Button>
+        {price}
         {cards}
       </div>
     );
