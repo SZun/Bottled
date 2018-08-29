@@ -134,4 +134,53 @@ router.delete(
   }
 );
 
+// @route POST /api/orders/rate/:id
+// @desc Rate or Update Rate
+// @access Private
+router.post(
+  '/rate/:id',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const { email } = req.user;
+      const { stars } = req.body;
+      let beer = await Beer.findById(req.params.id);
+      if (beer.hasOwnProperty('rating')) {
+        const { rating } = beer;
+        if (
+          rating.filter(
+            item =>
+              item.hasOwnPropety('email') && item.email.toString() === email
+          )
+        ) {
+          console.log('here');
+          const i = rating.findIndex(item => item.email == email);
+          rating[i].stars = stars;
+          res.send(beer);
+        } else {
+          console.log('over here');
+          const newRating = {
+            email,
+            stars
+          };
+          beer = await beer.update(newRating, { new: true });
+          res.send(beer);
+        }
+      } else {
+        const rating = {
+          email,
+          stars
+        };
+        beer = await Beer.findByIdAndUpdate(req.params.id, rating, {
+          new: true
+        });
+        res.send(beer);
+      }
+    } catch (err) {
+      console.log(`${err.message}`);
+      res.status(500).send({ swr: 'Something went wrong' });
+    }
+  }
+);
+
 export default router;

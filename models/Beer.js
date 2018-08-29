@@ -40,7 +40,23 @@ const beerSchema = new Schema({
         type: Date,
         default: Date.now,
         required: true
-      }
+      },
+      rating: [
+        {
+          email: {
+            type: String,
+            trim: true,
+            required: true,
+            unique: true
+          },
+          stars: {
+            type: Number,
+            required: true,
+            min: 1,
+            max: 5
+          }
+        }
+      ]
     }
   ]
 });
