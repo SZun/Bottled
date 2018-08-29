@@ -246,7 +246,6 @@ class Checkout extends Component {
     return (
       <div className="container" style={{ marginTop: '5%' }}>
         {modal}
-        {price}
         <Row>
           <Col s={1}>
             <i
@@ -348,6 +347,19 @@ class Checkout extends Component {
           Submit
         </Button>
         {price}
+        <h5
+          style={{
+            textAlign: 'center'
+          }}
+        >
+          <strong
+            style={{
+              textDecoration: 'underline'
+            }}
+          >
+            Order:
+          </strong>
+        </h5>
         {cards}
       </div>
     );
