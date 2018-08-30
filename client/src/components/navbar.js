@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Button, Icon } from 'react-materialize';
+import { Navbar, NavItem, Button, Icon, Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBarItem from './NavItem';
-
+import BottleIcon from '../assets/media/empty-beer-bottle.png';
 class NavbarReact extends Component {
   handleLogout = () => {
     this.props.logoutUser(this.props.history);
@@ -88,24 +88,51 @@ class NavbarReact extends Component {
               <Button
                 className={
                   this.props.order.notPurchased.length > 0
-                    ? 'red accent-3'
-                    : 'z-depth-3 light-blue accent-2'
+                    ? 'deep-orange accent-3'
+                    : 'z-depth-3 grey lighten-2 black-text'
                 }
                 waves="light"
                 large
               >
-                <Icon>shopping_cart</Icon>
+                <Row>
+                  <Col s={1}>
+                    <Icon>shopping_cart</Icon>
+                  </Col>
+                  <Col s={1}>
+                    <p
+                      style={{
+                        background: 'white',
+                        borderRadius: '50px'
+                      }}
+                    >
+                      {this.props.order.notPurchased.length > 0
+                        ? this.props.order.notPurchased.length
+                        : null}
+                    </p>
+                  </Col>
+                </Row>{' '}
               </Button>
             </div>
           </NavItem>
         </div>
       );
     }
+    const Img = <img src={BottleIcon} alt="This is the bottle icon" />;
     return (
       <div className="navbar-fixed">
         <Navbar
-          className="deep-orange accent-2"
-          brand="Bottled"
+          className="amber"
+          brand={
+            <span
+              style={{
+                fontSize: '1.5em',
+                color: '#FFFFFF'
+              }}
+            >
+              {Img}
+              Bottled
+            </span>
+          }
           right
           onClick={e => e.preventDefault()}
         >

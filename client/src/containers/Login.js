@@ -5,7 +5,7 @@ import { loginUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
 
 import Input from '../components/Input/Input';
-import Button from '../components/Button';
+import Button from '../components/Button/Button';
 
 class Login extends Component {
   state = {

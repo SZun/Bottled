@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Row } from 'react-materialize';
 
 import Input from '../components/Input/Input';
-import Button from '../components/Button';
+import Button from '../components/Button/Button';
 import Modal from '../components/Modal/Modal';
 
 class SignUp extends Component {
