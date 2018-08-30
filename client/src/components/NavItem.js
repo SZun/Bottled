@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavItem } from 'react-materialize';
-import Button from './Button';
+import Button from './Button/Button';
 
 const NavBarItem = ({...props, onClick, iconName, children }) => (
   <NavItem onClick={onClick}>

@@ -10,7 +10,7 @@ const FooterComponent = () => (
   //   }}
   // >
   <div
-    className="red darken-3 z-depth-5"
+    className=" z-depth-5"
     style={{
       textAlign: 'center',
       padding: '10px',
@@ -20,7 +20,8 @@ const FooterComponent = () => (
       height: '86px',
       width: '100%',
       color: '#FFF',
-      zIndex: 2
+      zIndex: 2,
+      backgroundColor: '#e6ba34'
     }}
   >
     <h5>Copyright &copy; {new Date().getFullYear()} Bottled</h5>

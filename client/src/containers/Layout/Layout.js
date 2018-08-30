@@ -46,7 +46,9 @@ class Layout extends Component {
             backgroundImage: `url(${Background})`
           }}
         >
-          <Container>{this.props.children}</Container>
+          {/* <Container> */}
+          {this.props.children}
+          {/* </Container> */}
         </main>
         <footer>
           <Footer />

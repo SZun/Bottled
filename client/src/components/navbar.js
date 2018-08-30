@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Button, Icon, Chip } from 'react-materialize';
+import { Navbar, NavItem, Button, Icon, Col, Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
@@ -88,16 +88,29 @@ class NavbarReact extends Component {
               <Button
                 className={
                   this.props.order.notPurchased.length > 0
-                    ? 'red lighten-2'
+                    ? 'deep-orange accent-3'
                     : 'z-depth-3 grey lighten-2 black-text'
                 }
                 waves="light"
                 large
               >
-                <Icon>
-                  shopping_cart
-                  <Chip style={{ color: 'black' }}>0</Chip>
-                </Icon>
+                <Row>
+                  <Col s={1}>
+                    <Icon>shopping_cart</Icon>
+                  </Col>
+                  <Col s={1}>
+                    <p
+                      style={{
+                        background: 'white',
+                        borderRadius: '50px'
+                      }}
+                    >
+                      {this.props.order.notPurchased.length > 0
+                        ? this.props.order.notPurchased.length
+                        : null}
+                    </p>
+                  </Col>
+                </Row>{' '}
               </Button>
             </div>
           </NavItem>
@@ -108,12 +121,12 @@ class NavbarReact extends Component {
     return (
       <div className="navbar-fixed">
         <Navbar
-          className="red darken-1"
+          className="amber"
           brand={
             <span
               style={{
                 fontSize: '1.5em',
-                color: '#e0e0e0'
+                color: '#FFFFFF'
               }}
             >
               {Img}
