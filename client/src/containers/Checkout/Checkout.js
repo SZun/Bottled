@@ -191,7 +191,7 @@ class Checkout extends Component {
               color: '#228b22'
             }}
           >
-            $ ${this.props.order.notPurchased.length * (4.99).toFixed(2)}
+            ${(this.props.order.notPurchased.length * 4.99).toFixed(2)}
           </span>
         </h5>
       );
@@ -347,19 +347,6 @@ class Checkout extends Component {
           Submit
         </Button>
         {price}
-        <h5
-          style={{
-            textAlign: 'center'
-          }}
-        >
-          <strong
-            style={{
-              textDecoration: 'underline'
-            }}
-          >
-            Order:
-          </strong>
-        </h5>
         {cards}
       </div>
     );
