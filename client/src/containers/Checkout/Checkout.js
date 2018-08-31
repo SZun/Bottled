@@ -231,7 +231,10 @@ class Checkout extends Component {
             <p>
               Your order with be shipped to{' '}
               <strong>
-                {`${streetAddress}, ${city}, ${state}, ${zipCode}`} by{' '}
+                {`${streetAddress}, ${city}, ${state}, ${zipCode}`}
+              </strong>{' '}
+              by{' '}
+              <strong>
                 {moment()
                   .add(7, 'days')
                   .format('MM-DD-YYYY')}
