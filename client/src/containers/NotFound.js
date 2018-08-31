@@ -6,8 +6,24 @@ const NotFound = () => (
       textAlign: 'center'
     }}
   >
-    <h1>🍺Have you been drinking?🍺</h1>
-    <h5>🚫Because the page you are looking for does not exist🚫</h5>
+    <h1>
+      <span role="img" aria-label="img">
+        🍺
+      </span>
+      Have you been drinking?
+      <span role="img" aria-label="img">
+        🍺
+      </span>
+    </h1>
+    <h5>
+      <span role="img" aria-label="img">
+        🚫
+      </span>
+      Because the page you are looking for does not exist
+      <span role="img" aria-label="img">
+        🚫
+      </span>
+    </h5>
   </div>
 );
 

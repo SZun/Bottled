@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Header from '../components/header';
 import { Row, Col } from 'react-materialize';
 import { fetchPurchased } from '../store/actions/orderActions';
 import PropTypes from 'prop-types';
-import CheckoutCard from '../components/CheckoutCard';
-import Spinner from '../components/Spinner';
+import asyncComponent from '../utils/asyncComponent';
+
+const CheckoutCard = asyncComponent(() => import('../components/CheckoutCard'));
+const Spinner = asyncComponent(() => import('../components/Spinner'));
 
 class Orders extends Component {
   componentDidMount = () => {

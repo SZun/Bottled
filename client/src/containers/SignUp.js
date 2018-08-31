@@ -4,10 +4,11 @@ import { withRouter } from 'react-router-dom';
 import { registerUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
 import { Row } from 'react-materialize';
+import asyncComponent from '../utils/asyncComponent';
 
-import Input from '../components/Input/Input';
-import Button from '../components/Button';
-import Modal from '../components/Modal/Modal';
+const Input = asyncComponent(() => import('../components/Input/Input'));
+const Button = asyncComponent(() => import('../components/Button'));
+const Modal = asyncComponent(() => import('../components/Modal/Modal'));
 
 class SignUp extends Component {
   state = {

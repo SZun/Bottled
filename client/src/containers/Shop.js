@@ -6,8 +6,10 @@ import { createOrder, fetchNotPurchased } from '../store/actions/orderActions';
 import { postBeer } from '../store/actions/beerActions';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import Spinner from '../components/Spinner';
 import PropTypes from 'prop-types';
+import asyncComponent from '../utils/asyncComponent';
+
+const Spinner = asyncComponent(() => import('../components/Spinner'));
 
 class Shop extends Component {
   state = {

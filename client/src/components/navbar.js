@@ -113,7 +113,12 @@ class NavbarReact extends Component {
               color: '#000'
             }}
           >
-            <Link to="/">🍺 Bottled</Link>
+            <Link to="/">
+              <span role="img" aria-label="img">
+                🍺
+              </span>{' '}
+              Bottled
+            </Link>
           </span>
         }
         right

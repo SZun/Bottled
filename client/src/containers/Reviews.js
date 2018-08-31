@@ -7,9 +7,12 @@ import {
   deleteComment
 } from '../store/actions/beerActions';
 import PropTypes from 'prop-types';
-import Spinner from '../components/Spinner';
-import ReviewCard from '../components/ReviewCard';
-import Comments from '../components/Comments';
+
+import asyncComponent from '../utils/asyncComponent';
+
+const Spinner = asyncComponent(() => import('../components/Spinner'));
+const ReviewCard = asyncComponent(() => import('../components/ReviewCard'));
+const Comments = asyncComponent(() => import('../components/Comments'));
 
 class Reviews extends Component {
   state = {
