@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
+import asyncComponent from '../utils/asyncComponent';
 
-import Input from '../components/Input/Input';
-import Button from '../components/Button';
+const Input = asyncComponent(() => import('../components/Input/Input'));
+const Button = asyncComponent(() => import('../components/Button'));
 
 class Login extends Component {
   state = {
