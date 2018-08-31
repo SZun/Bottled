@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import NavBarItem from './NavItem';
-import BottleIcon from '../assets/media/empty-beer-bottle.png';
+import asyncComponent from '../utils/asyncComponent';
+
+const NavBarItem = asyncComponent(() => import('./NavItem'));
 
 class NavbarReact extends Component {
   handleLogout = () => {
@@ -102,7 +103,6 @@ class NavbarReact extends Component {
         </div>
       );
     }
-    const Img = <img src={BottleIcon} alt="This is the bottle icon" />;
     return (
       <Navbar
         className="amber accent-2"
@@ -110,11 +110,13 @@ class NavbarReact extends Component {
           <span
             style={{
               fontSize: '1.5em',
-              color: '#FFFFFF'
+              color: '#000'
             }}
           >
             <Link to="/">
-              {Img}
+              <span role="img" aria-label="img">
+                🍺
+              </span>{' '}
               Bottled
             </Link>
           </span>

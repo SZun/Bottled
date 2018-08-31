@@ -4,6 +4,7 @@ import spinner from '../assets/media/spinner.gif';
 const Spinner = () => {
   return (
     <div>
+      <br />
       <img
         src={spinner}
         style={{

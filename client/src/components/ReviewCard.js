@@ -1,6 +1,8 @@
 import React from 'react';
 import { Col } from 'react-materialize';
-import Button from './Button';
+import asyncComponent from '../utils/asyncComponent';
+
+const Button = asyncComponent(() => import('./Button'));
 
 const ReviewCard = ({
   image,

@@ -8,15 +8,18 @@ import {
   purchaseOrders
 } from '../../store/actions/orderActions';
 import { getUserData } from '../../store/actions/authActions';
-
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button';
 import { Row, Col } from 'react-materialize';
-import CheckoutCard from '../../components/CheckoutCard';
-import Modal from '../../components/Modal/Modal';
 import moment from 'moment';
+import asyncComponent from '../../utils/asyncComponent';
 
 import './Checkout.css';
+
+const Input = asyncComponent(() => import('../../components/Input/Input'));
+const Button = asyncComponent(() => import('../../components/Button'));
+const CheckoutCard = asyncComponent(() =>
+  import('../../components/CheckoutCard')
+);
+const Modal = asyncComponent(() => import('../../components/Modal/Modal'));
 
 class Checkout extends Component {
   state = {
