@@ -9,8 +9,6 @@ import setAuthToken from '../../axios/setAuthToken';
 import PropTypes from 'prop-types';
 import Navbar from '../../components/navbar';
 import Footer from '../../components/footer';
-import { Container } from 'react-materialize';
-import { Background } from '../../assets/media/concrete_seamless.png';
 
 class Layout extends Component {
   render() {
@@ -41,15 +39,7 @@ class Layout extends Component {
             <Navbar />
           </nav>
         </header>
-        <main
-          style={{
-            backgroundImage: `url(${Background})`
-          }}
-        >
-          {/* <Container> */}
-          {this.props.children}
-          {/* </Container> */}
-        </main>
+        <main>{this.props.children}</main>
         <footer>
           <Footer />
         </footer>

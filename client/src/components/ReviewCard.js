@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col } from 'react-materialize';
-import Button from './Button/Button';
+import Button from './Button';
 
 const ReviewCard = ({
   image,

@@ -24,8 +24,6 @@ bodyParserMiddleware(app);
 app.use(passport.initialize());
 passportMiddleware(passport);
 
-app.use(express.static('public'));
-
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);

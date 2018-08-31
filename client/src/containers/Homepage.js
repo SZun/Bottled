@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../assets/media/bottle1.jpg';
+
 const Homepage = () => (
   <div
     style={{
@@ -9,7 +9,10 @@ const Homepage = () => (
       flex: 1
     }}
   >
-    <img src={image} alt="hero pic" />
+    <img
+      src={`https://images.pexels.com/photos/8800/snow-restaurant-mountains-sky.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+      alt="hero pic"
+    />
     <div
       style={{
         position: 'absolute',
@@ -21,9 +24,8 @@ const Homepage = () => (
       <h1
         style={{
           color: '#FFFFFF',
-          textShadow: '2px 2px 5px darkgoldenrod',
-          WebkitTextFillColor: 'transparent',
-          paddingBottom: '100%'
+          textShadow: '2px 2px 5px #000000',
+          WebkitTextFillColor: 'transparent'
         }}
       >
         {`B O T T L E D`}
