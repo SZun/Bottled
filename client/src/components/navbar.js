@@ -5,6 +5,7 @@ import { logoutUser } from '../store/actions/authActions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBarItem from './NavItem';
+import BottleIcon from '../assets/media/empty-beer-bottle.png';
 
 class NavbarReact extends Component {
   handleLogout = () => {
@@ -88,7 +89,7 @@ class NavbarReact extends Component {
               <Button
                 className={
                   this.props.order.notPurchased.length > 0
-                    ? 'red accent-3'
+                    ? 'red'
                     : 'z-depth-3 light-blue accent-2'
                 }
                 waves="light"
@@ -101,17 +102,26 @@ class NavbarReact extends Component {
         </div>
       );
     }
+    const Img = <img src={BottleIcon} alt="This is the bottle icon" />;
     return (
-      <div className="navbar-fixed">
-        <Navbar
-          className="deep-orange accent-2"
-          brand="Bottled"
-          right
-          onClick={e => e.preventDefault()}
-        >
-          {navItems}
-        </Navbar>
-      </div>
+      <Navbar
+        className="amber accent-2"
+        brand={
+          <span
+            style={{
+              fontSize: '1.5em',
+              color: '#FFFFFF'
+            }}
+          >
+            {Img}
+            Bottled
+          </span>
+        }
+        right
+        onClick={e => e.preventDefault()}
+      >
+        {navItems}
+      </Navbar>
     );
   }
 }
