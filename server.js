@@ -19,6 +19,8 @@ bodyParserMiddleware(app);
 app.use(passport.initialize());
 passportMiddleware(passport);
 
+app.use(express.static('public'));
+
 // Routes
 import routes from './routes/routes';
 routes(app);
