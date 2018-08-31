@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavItem, Button, Icon } from 'react-materialize';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBarItem from './NavItem';
 import BottleIcon from '../assets/media/empty-beer-bottle.png';
@@ -113,8 +113,10 @@ class NavbarReact extends Component {
               color: '#FFFFFF'
             }}
           >
-            {Img}
-            Bottled
+            <Link to="/">
+              {Img}
+              Bottled
+            </Link>
           </span>
         }
         right
