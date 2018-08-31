@@ -52,8 +52,14 @@ const BeerItem = ({ image, description, name, onClick, onReview }) => (
             >
               <Icon>add</Icon>
             </Button>
-            <Button onClick={onReview} className="z-depth-3 amber flex-child">
-              Review
+            <Button
+              style={{
+                float: 'left'
+              }}
+              onClick={onReview}
+              className="z-depth-3 deep-orange accent-2 flex-child"
+            >
+              Comments
             </Button>
           </div>
         </div>

@@ -13,6 +13,11 @@ import mongooseConnection from './startup/connection';
 import bodyParserMiddleware from './startup/bodyParser';
 import passportMiddleware from './services/passport';
 
+// Importing Routes
+import userRoutes from './routes/users';
+import orderRoutes from './routes/orders';
+import beerRoutes from './routes/beers';
+
 // Middlewares
 mongooseConnection(mongoose);
 bodyParserMiddleware(app);
@@ -22,8 +27,9 @@ passportMiddleware(passport);
 app.use(express.static('public'));
 
 // Routes
-import routes from './routes/routes';
-routes(app);
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/beers', beerRoutes);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

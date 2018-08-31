@@ -62,7 +62,7 @@ class Shop extends Component {
           />
         ))
       ) : (
-        <Spinner style={{ marginTop: '100px' }} />
+        <Spinner />
       );
     return <Row>{allBeerItems}</Row>;
   }

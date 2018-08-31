@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const beerSchema = new Schema({
   name: {
@@ -44,6 +45,6 @@ const beerSchema = new Schema({
   ]
 });
 
-const Beer = mongoose.model('beers', beerSchema);
+const Beer = mongoose.model('beerreview', beerSchema);
 
 export default Beer;

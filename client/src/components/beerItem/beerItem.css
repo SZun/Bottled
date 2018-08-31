@@ -4,7 +4,7 @@
 }
 
 .card-stacked {
-  width: 33.333%;
+  width: 300px;
   height: 500px;
   overflow-y: scroll;
 }
