@@ -2,7 +2,7 @@
 
 An e-commerce site which allows users to purchase different craft beverages to be shipped to their current location. This application uses solely ES6 on both the client and server-sides.
 
-## [Deployed Here](https://frozen-harbor-94469.herokuapp.com/)
+## [Deployed Here](https://quiet-forest-84841.herokuapp.com/)
 
 ![](./assets/Navbar.png)
 ![](./assets/Homepage.png)
