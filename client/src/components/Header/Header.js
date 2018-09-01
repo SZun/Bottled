@@ -9,9 +9,10 @@ const Header = ({ children }) => (
       <h1 className="header">
         <Random
           text={children}
-          effect="verticalFadeIn"
-          iterations={1}
-          effectChange={3}
+          effect="color"
+          effectDuration={0.5}
+          iterations="infinite"
+          effectChange="#ffc107"
         />
       </h1>
     </header>
