@@ -1,21 +1,17 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4c614344d1cd42dac85aa66f5cc16d357ae98fc0
 # Bottled
 
 An e-commerce site which allows users to purchase different craft beverages to be shipped to their current location. This application uses solely ES6 on both the client and server-sides.
 
 ## [Deployed Here](https://frozen-harbor-94469.herokuapp.com/)
 
-![](./assets/Checkout.png)
-![](./assets/Shop.png)
+![](./assets/Navbar.png)
 ![](./assets/Homepage.png)
+![](./assets/Shop.png)
+![](./assets/Checkout.png)
 ![](./assets/Review.png)
 ![](./assets/Validation1.png)
 ![](./assets/Validation2.png)
 ![](./assets/Validation3.png)
-![](./assets/Navbar.png)
 ![](./assets/Order.png)
 
 ## Getting Started
@@ -74,9 +70,3 @@ git push heroku master
 - **Krupa Gawade** - [krupagawade](https://github.com/krupagawade)
 - **Mike Leftakes** - [mleftakes](https://github.com/mleftakes)
 - **Sam G Zun** - [SZun](https://github.com/SZun)
-<<<<<<< HEAD
-=======
-
->>>>>>> 7f8866649964d177770f802819eab4d21d719289
-=======
->>>>>>> 4c614344d1cd42dac85aa66f5cc16d357ae98fc0
