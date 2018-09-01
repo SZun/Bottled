@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Bottled
 
 An e-commerce site which allows users to purchase different craft beverages to be shipped to their current location. This application uses solely ES6 on both the client and server-sides.
@@ -70,3 +71,6 @@ git push heroku master
 - **Krupa Gawade** - [krupagawade](https://github.com/krupagawade)
 - **Mike Leftakes** - [mleftakes](https://github.com/mleftakes)
 - **Sam G Zun** - [SZun](https://github.com/SZun)
+=======
+
+>>>>>>> 7f8866649964d177770f802819eab4d21d719289
