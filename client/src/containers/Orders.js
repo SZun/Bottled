@@ -7,6 +7,7 @@ import asyncComponent from '../utils/asyncComponent';
 
 const CheckoutCard = asyncComponent(() => import('../components/CheckoutCard'));
 const Spinner = asyncComponent(() => import('../components/Spinner'));
+const Header = asyncComponent(() => import('../components/Header/Header'));
 
 class Orders extends Component {
   componentDidMount = () => {
@@ -39,14 +40,7 @@ class Orders extends Component {
       <div className="container">
         <Row>
           <Col s={12}>
-            {/* <Header>Your Orders</Header> */}
-            <h3
-              style={{
-                textAlign: 'center'
-              }}
-            >
-              Your Orders
-            </h3>
+            <Header>Your Orders:</Header>
             {orders}
           </Col>
         </Row>

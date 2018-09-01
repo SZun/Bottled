@@ -20,6 +20,7 @@ const CheckoutCard = asyncComponent(() =>
   import('../../components/CheckoutCard')
 );
 const Modal = asyncComponent(() => import('../../components/Modal/Modal'));
+const Header = asyncComponent(() => import('../../components/Header/Header'));
 
 class Checkout extends Component {
   state = {
@@ -251,6 +252,7 @@ class Checkout extends Component {
 
     return (
       <div className="container" style={{ marginTop: '5%' }}>
+        <Header>Checkout</Header>
         {modal}
         <Row>
           <Col s={1}>
