@@ -9,7 +9,7 @@ const SignUp = asyncComponent(() => import('./containers/SignUp'));
 const Login = asyncComponent(() => import('./containers/Login'));
 const Checkout = asyncComponent(() => import('./containers/Checkout/Checkout'));
 const NotFound = asyncComponent(() => import('./containers/NotFound'));
-const Homepage = asyncComponent(() => import('./containers/Homepage'));
+const Homepage = asyncComponent(() => import('./containers/Homepage/Homepage'));
 const Shop = asyncComponent(() => import('./containers/Shop'));
 const Orders = asyncComponent(() => import('./containers/Orders'));
 const Reviews = asyncComponent(() => import('./containers/Reviews'));

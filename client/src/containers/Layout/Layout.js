@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import asyncComponent from '../../utils/asyncComponent';
 
 const Navbar = asyncComponent(() => import('../../components/navbar'));
-const Footer = asyncComponent(() => import('../../components/footer'));
+const Footer = asyncComponent(() => import('../../components/Footer/footer'));
 
 class Layout extends Component {
   render() {

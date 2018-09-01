@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Homepage.css';
+
 const Homepage = () => (
   <div
     style={{
@@ -13,23 +15,8 @@ const Homepage = () => (
       src={`https://images.pexels.com/photos/8800/snow-restaurant-mountains-sky.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
       alt="hero pic"
     />
-    <div
-      style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)'
-      }}
-    >
-      <h1
-        style={{
-          color: '#FFFFFF',
-          textShadow: '2px 2px 5px #000000',
-          WebkitTextFillColor: 'transparent'
-        }}
-      >
-        {`B O T T L E D`}
-      </h1>
+    <div className="header">
+      <h1>{`B O T T L E D`}</h1>
     </div>
   </div>
 );
