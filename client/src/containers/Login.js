@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser, clearErrors } from '../store/actions/authActions';
 import PropTypes from 'prop-types';
-import Header from '../components/Header/Header';
+
 import asyncComponent from '../utils/asyncComponent';
 
 const Input = asyncComponent(() => import('../components/Input/Input'));
 const Button = asyncComponent(() => import('../components/Button'));
+const Header = asyncComponent(() => import('../components/Header/Header'));
 
 class Login extends Component {
   state = {
