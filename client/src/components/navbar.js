@@ -86,19 +86,21 @@ class NavbarReact extends Component {
             </NavBarItem>
           ))}
           <NavItem onClick={() => this.props.history.push('/checkout')}>
-            <div>
-              <Button
-                className={
-                  this.props.order.notPurchased.length > 0
-                    ? 'red'
-                    : 'z-depth-3 light-blue accent-2'
-                }
-                waves="light"
-                large
-              >
-                <Icon>shopping_cart</Icon>
-              </Button>
-            </div>
+            <NavBarItem
+              iconName="shopping_cart"
+              className={
+                this.props.order.notPurchased.length > 0
+                  ? 'z-depth-3 red accent-2'
+                  : 'z-depth-3 light-blue accent-2'
+              }
+              waves="light"
+              large
+              left
+            >
+              {this.props.order.notPurchased.length > 0
+                ? this.props.order.notPurchased.length
+                : null}
+            </NavBarItem>
           </NavItem>
         </div>
       );

@@ -8,12 +8,13 @@ const CustomButton = ({
   right,
   left,
   large,
-  type
+  type,
+  className
 }) => {
   return (
     <div>
       <Button
-        className="z-depth-3 light-blue accent-2"
+        className={className ? className : 'z-depth-3 light-blue accent-2'}
         waves="light"
         large={large}
         onClick={onClick}
