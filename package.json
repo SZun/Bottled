@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/SZun/Bottled#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-classnames": "^0.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -42,10 +43,12 @@
     "joi": "^13.6.0",
     "joi-password-complexity": "^2.0.1",
     "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "mongoose": "^5.2.7",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "react-scripts": "^1.1.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.3",
