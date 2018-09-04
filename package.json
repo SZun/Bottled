@@ -1,21 +1,33 @@
 {
-  "name": "server",
+  "name": "Bottled",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Ricky's branch is now live",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon starter.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node starter.js"
+    "start": "node starter.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "prettier": {
     "singleQuote": true
   },
+  "engines": {
+    "node": "10.9.0",
+    "npm": "6.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SZun/Bottled.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SZun/Bottled/issues"
+  },
+  "homepage": "https://github.com/SZun/Bottled#readme",
   "dependencies": {
     "babel-plugin-classnames": "^0.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -24,13 +36,19 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "concurrently": "^3.6.1",
     "express": "^4.16.3",
+    "joi": "^13.6.0",
+    "joi-password-complexity": "^2.0.1",
+    "jsonwebtoken": "^8.3.0",
+    "moment": "^2.22.2",
     "mongoose": "^5.2.7",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "concurrently": "^3.6.1"
   }
 }
