@@ -51,7 +51,13 @@ const ReviewCard = ({
                 : null
             }
           />
-          <Button iconName="message" large right onClick={onClick}>
+          <Button
+            iconName="message"
+            waves="light"
+            large
+            right
+            onClick={onClick}
+          >
             Comment
           </Button>
         </div>

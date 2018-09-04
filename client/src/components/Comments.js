@@ -24,7 +24,7 @@ const Comments = ({ name, date, comment, isUser, onClick }) => {
             <p>{comment}</p>
           </div>
           {isUser === true ? (
-            <Button className="red" onClick={onClick}>
+            <Button waves="light" className="red" onClick={onClick}>
               <Icon>delete_forever</Icon>
             </Button>
           ) : null}

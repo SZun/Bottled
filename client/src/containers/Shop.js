@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import BeerItem from '../components/beerItem/beerItem';
 import { Row } from 'react-materialize';
 import { connect } from 'react-redux';
 import { createOrder, fetchNotPurchased } from '../store/actions/orderActions';
@@ -10,6 +9,9 @@ import PropTypes from 'prop-types';
 import asyncComponent from '../utils/asyncComponent';
 
 const Spinner = asyncComponent(() => import('../components/Spinner'));
+const BeerItem = asyncComponent(() =>
+  import('../components/beerItem/beerItem')
+);
 
 class Shop extends Component {
   state = {

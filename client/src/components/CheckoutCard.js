@@ -20,7 +20,7 @@ const CheckoutCard = ({
         {isCheckout ? (
           <Row>
             <Col s={3}>
-              <Button className="red" onClick={onClick}>
+              <Button waves="light" className="red" onClick={onClick}>
                 <Icon right={right} left={left}>
                   delete_forever
                 </Icon>

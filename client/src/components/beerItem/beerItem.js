@@ -44,6 +44,7 @@ const BeerItem = ({ image, description, name, onClick, onReview }) => (
           </p>
           <div className="flex">
             <Button
+              waves="light"
               onClick={onClick}
               className="z-depth-3 light-blue accent-2 flex-child"
               style={{
@@ -52,7 +53,11 @@ const BeerItem = ({ image, description, name, onClick, onReview }) => (
             >
               <Icon>add</Icon>
             </Button>
-            <Button onClick={onReview} className="z-depth-3 amber flex-child">
+            <Button
+              waves="light"
+              onClick={onReview}
+              className="z-depth-3 amber flex-child"
+            >
               Review
             </Button>
           </div>
