@@ -16,7 +16,7 @@ const Homepage = () => (
       alt="hero pic"
     />
     <div className="header">
-      <h1>{`B O T T L E D`}</h1>
+      <h1 className="header-text">{`B O T T L E D`}</h1>
     </div>
   </div>
 );

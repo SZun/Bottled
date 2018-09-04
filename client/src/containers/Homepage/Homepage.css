@@ -5,7 +5,8 @@
   transform: translate(-50%, -50%);
 }
 
-h1 {
+.header-text {
   text-shadow: 2px 2px 5px #000000;
   -webkit-text-fill-color: transparent;
+  font-weight: 200;
 }

@@ -9,7 +9,7 @@ import asyncComponent from '../utils/asyncComponent';
 const Input = asyncComponent(() => import('../components/Input/Input'));
 const Button = asyncComponent(() => import('../components/Button'));
 const Modal = asyncComponent(() => import('../components/Modal/Modal'));
-const Header = asyncComponent(() => import('../components/Header/Header'));
+const PageHeader = asyncComponent(() => import('../components/Header/Header'));
 
 class SignUp extends Component {
   state = {
@@ -194,7 +194,6 @@ class SignUp extends Component {
 
     return (
       <div className="container" style={{ marginTop: '5%' }}>
-        <Header>Sign Up</Header>
         {errors.birthDate ? (
           <Modal
             show
@@ -231,6 +230,7 @@ class SignUp extends Component {
             </h5>
           </Modal>
         ) : null}
+        <PageHeader text="Sign Up" />
         {inputContent}
         <Row>{dateContent}</Row>
         <Row>

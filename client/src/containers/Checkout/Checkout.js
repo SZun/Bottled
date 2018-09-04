@@ -20,7 +20,9 @@ const CheckoutCard = asyncComponent(() =>
   import('../../components/CheckoutCard')
 );
 const Modal = asyncComponent(() => import('../../components/Modal/Modal'));
-const Header = asyncComponent(() => import('../../components/Header/Header'));
+const PageHeader = asyncComponent(() =>
+  import('../../components/Header/Header')
+);
 
 class Checkout extends Component {
   state = {
@@ -252,9 +254,9 @@ class Checkout extends Component {
 
     return (
       <div className="container" style={{ marginTop: '5%' }}>
-        <Header>Checkout</Header>
         {modal}
-        <Row>
+        <PageHeader text="Checkout" />
+        <Row style={{ marginBottom: '3em' }}>
           <Col s={1}>
             <i
               className="fab fa-cc-visa"

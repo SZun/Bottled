@@ -1,13 +1,10 @@
 import React from 'react';
-
 import './Header.css';
 
-const Header = ({ children }) => (
+const PageHeader = ({ text }) => (
   <div>
-    <header>
-      <h1 className="header">{children}</h1>
-    </header>
+    <h1 className="custom-page-header">{text}</h1>
   </div>
 );
 
-export default Header;
+export default PageHeader;

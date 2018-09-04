@@ -8,7 +8,7 @@ import asyncComponent from '../utils/asyncComponent';
 
 const Input = asyncComponent(() => import('../components/Input/Input'));
 const Button = asyncComponent(() => import('../components/Button'));
-const Header = asyncComponent(() => import('../components/Header/Header'));
+const PageHeader = asyncComponent(() => import('../components/Header/Header'));
 
 class Login extends Component {
   state = {
@@ -81,7 +81,7 @@ class Login extends Component {
 
     return (
       <div className="container" style={{ marginTop: '5%' }}>
-        <Header>Login</Header>
+        <PageHeader text="Login" />
         {inputContent}
         <Button onClick={this.onSubmitHandler} iconName="check" right large>
           Submit

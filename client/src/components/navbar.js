@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavItem, Button, Icon } from 'react-materialize';
+import { Navbar, NavItem } from 'react-materialize';
 import { connect } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { withRouter, Link } from 'react-router-dom';
@@ -90,12 +90,12 @@ class NavbarReact extends Component {
               iconName="shopping_cart"
               className={
                 this.props.order.notPurchased.length > 0
-                  ? 'z-depth-3 red accent-2'
+                  ? 'z-depth-3 red'
                   : 'z-depth-3 light-blue accent-2'
               }
               waves="light"
               large
-              left
+              left={this.props.order.notPurchased.length > 0 ? true : false}
             >
               {this.props.order.notPurchased.length > 0
                 ? this.props.order.notPurchased.length
@@ -119,7 +119,7 @@ class NavbarReact extends Component {
               <span role="img" aria-label="img">
                 🍺
               </span>{' '}
-              Bottled
+              <span style={{ fontWeight: 200 }}>Bottled</span>
             </Link>
           </span>
         }
