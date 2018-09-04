@@ -17,6 +17,7 @@ export const createOrder = beer => async dispatch => {
     dispatch({
       type: CREATE_ORDER
     });
+    fetchNotPurchased();
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -32,6 +33,7 @@ export const deleteOrder = id => async dispatch => {
     dispatch({
       type: DELETE_ORDER
     });
+    fetchNotPurchased();
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
