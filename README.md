@@ -6,42 +6,72 @@ An e-commerce site which allows users to purchase different craft beverages to b
 
 ![](./assets/Navbar.png)
 ![](./assets/Homepage.png)
+![](./assets/Footer.png)
 ![](./assets/Shop.png)
 ![](./assets/Checkout.png)
+![](./assets/Price.png)
+![](./assets/Order.png)
 ![](./assets/Review.png)
 ![](./assets/Validation1.png)
 ![](./assets/Validation2.png)
 ![](./assets/Validation3.png)
-![](./assets/Order.png)
 
 ## Getting Started
 
 ### Prerequisites
 
-Installing Create-React-App and the latest versions of NPM and Node.
+Installing the latest versions of Create-React-App, NPM, Node & Yarn.
 
 ```
 $ npm i -g create-react-app@latest
-$ npm i -g node@latest
 $ npm i -g npm@latest
+$ npm i -g node@latest
+$ npm i -g yarn@latest
 ```
 
 ### Installing
 
-After cloning the repo, cd into the directory and install the required npm packages:
+After cloning the repo, cd into the directory and install the required npm & yarn packages:
 
 ```
-npm i
+$ npm i && cd client && yarn && cd ..
+```
+
+Then create a dev.js file in the config directory
+
+```
+$ cd config && touch dev.js && cd ..
+```
+
+Add in your passport secret and mongodb connection string
+
+```
+const keys = {
+  secretOrKey: 'YOUR_SECRET_HERE',
+  mongoURI: 'YOUR_CONNECTION_STRING_HERE'
+};
+
+export default keys;
+```
+
+##Scripts
+
+In order of running the node server, react client, and developement (both server and client):
+
+```
+$ yarn server
+$ yarn client
+$ yarn dev
 ```
 
 ## Deployment
 
 ```
-heroku login
-heroku create
-git add -A
-git commit -m "heroku deployment"
-git push heroku master
+$ heroku login
+$ heroku create
+$ git add -A
+$ git commit -m "heroku deployment"
+$ git push heroku master
 ```
 
 ## Built With
@@ -51,7 +81,6 @@ git push heroku master
 - [Redux](https://redux.js.org/) - Used for state management
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk) - Used for asynchronous state management
 - [Axios](https://www.npmjs.com/package/axios) - Used for HTTP Requestsdeployment
-- [Redux Form](https://redux-form.com/7.4.2/) - Used for wizard form
 - [Node.js](https://nodejs.org/en/) - Backend
 - [Mongoose](https://mongoosejs.com/) - Database ODM
 - [Express](https://expressjs.com/) - Node.js Framwork
@@ -62,6 +91,7 @@ git push heroku master
 - [Materialize CSS](https://materializecss.com/) - CSS Framework
 - [Joi](https://www.npmjs.com/package/joi) - Validation
 - [Joi-Password-Complexity](https://www.npmjs.com/package/joi-password-complexity) - Password Validation
+- [Moment.js](https://momentjs.com/) - Date Parsing
 
 ## Authors
 
