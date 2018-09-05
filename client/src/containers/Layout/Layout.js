@@ -34,6 +34,9 @@ class Layout extends Component {
         store.dispatch(logoutUser(this.props.history));
       }
     }
+
+    console.log(this.props.history.location.pathname);
+
     return (
       <div>
         <header>
@@ -42,7 +45,13 @@ class Layout extends Component {
           </nav>
         </header>
         <main>{this.props.children}</main>
-        <footer>
+        <footer
+          style={
+            this.props.history.location.pathname === '/'
+              ? null
+              : { marginTop: '3%' }
+          }
+        >
           <Footer />
         </footer>
       </div>
