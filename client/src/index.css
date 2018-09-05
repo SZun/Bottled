@@ -6,3 +6,7 @@ body {
 * {
   font-weight: 200;
 }
+
+#nav-mobile a {
+  margin: 6% 0;
+}
